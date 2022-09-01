@@ -2,7 +2,7 @@
 *::before,
 *::after {
   box-sizing: border-box;
-  font-family: 'Roboto', 'sans-serif';
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
 }
 
 :root {
