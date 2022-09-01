@@ -4,3 +4,16 @@
   box-sizing: border-box;
   font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
 }
+
+:root {
+  --primary-hsl: 205, 27%, 84%;
+  --secondary-hsl: 214, 54%, 34%;
+  --success-hsl: 100, 60%, 50%;
+  --error-hsl: 0, 60%, 50%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: hsl(var(--primary-hsl));
+}
