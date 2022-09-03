@@ -1,5 +1,5 @@
 import './styles/App.css';
-import { Router } from './router/router';
+import { Router } from './routes/router';
 import { UserContextProvider } from './context/userContext';
 import { Navbar } from './components/navbar/navbar';
 import { Footer } from './components/footer/footer';
