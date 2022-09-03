@@ -1,29 +1,65 @@
 import './auth.css';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Formik, Form } from 'formik';
+import { UserAuth } from '../../context/userContext';
+import { useParams } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import { signInValidation } from '../../utils/validations';
+import Spinner from '../../components/spinner/spinner';
+import InputFormik from '../../components/formik/inputFormik';
+import Button from 'react-bootstrap/Button';
+import IAuthUser from '../../interfaces/IAuthUser';
 
 const Auth = () => {
-  return (
-    <div className='login-container'>
-      <form>
-        <div className='input-group'>
-          <h1>Bienvenido</h1>
-          <div className='input-group success'>
-            <label htmlFor='email'>Email</label>
-            <input type='email' name='email' id='email' />
-            <span className='msg'>Valid Email</span>
-          </div>
+  const SwalObj = Swal.mixin({});
+  const { signIn } = UserAuth();
+  const params = useParams();
+  const [loadingData, setLoadingData] = useState(false);
+  const navigate = useNavigate();
+  const validation = signInValidation;
+  const initialValues: IAuthUser = {
+    email: '',
+    password: ''
+  };
 
-          <div className='input-group error'>
-            <label htmlFor='password'>Pasword</label>
-            <input type='password' name='password' id='password' />
-            <span className='msg'>Incorrect Password</span>
-          </div>
+  const handleOnAuth = async (values: IAuthUser) => {
+    setLoadingData(true);
+    try {
+      await signIn(values.email, values.password);
+      navigate(`/${params.site}/admin-panel`);
+    } catch (err) {
+      console.log(err);
+      SwalObj.fire({
+        html: `<strong>${err}</strong>`,
+        icon: 'error',
+        showConfirmButton: false
+      });
+    }
+    setLoadingData(false);
+  };
 
-          <button type='submit' className='login-button'>
-            Login
-          </button>
+  return loadingData ? (
+    <Spinner />
+  ) : (
+    <Formik initialValues={initialValues} validationSchema={validation} onSubmit={handleOnAuth}>
+      <div>
+        <h2 className='login-title'>Login</h2>
+        <div className='login-form'>
+          <Form>
+            <div className='form-control'>
+              <InputFormik control='input' type='email' label='Email:' name='email' />
+              <InputFormik control='input' type='password' label='Password:' name='password' />
+              <div className='d-grid gap-2 mt-3'>
+                <Button variant='btn btn-secondary btn-lg btn-block' type='submit'>
+                  Login
+                </Button>
+              </div>
+            </div>
+          </Form>
         </div>
-      </form>
-    </div>
+      </div>
+    </Formik>
   );
 };
 
