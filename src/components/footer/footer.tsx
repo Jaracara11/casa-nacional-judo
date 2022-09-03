@@ -1,11 +1,9 @@
 import './footer.css';
 
-const year = new Date().getFullYear();
-
 const Footer = () => {
   return (
     <>
-      <p>Copyright &copy; {year} Casa Nacional de Judo</p>{' '}
+      <p>Copyright &copy; 2022 Casa Nacional de Judo</p>{' '}
     </>
   );
 };
