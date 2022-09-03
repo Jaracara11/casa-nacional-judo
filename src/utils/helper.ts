@@ -1,9 +1,5 @@
 import { Timestamp } from 'firebase/firestore/lite';
 
-const formatTimeStamp = (timeStamp: Timestamp) => {
-  return new Date(timeStamp.seconds * 1000).toLocaleTimeString('es-ES', { year: 'numeric', month: '2-digit', day: 'numeric' });
-};
-
 const firstCharToUpper = (str: string) => {
   const sentence = str.toLowerCase().split(' ');
   for (let i = 0; i < sentence.length; i++) {
@@ -13,4 +9,4 @@ const firstCharToUpper = (str: string) => {
   return sentence.toString().replaceAll(',', ' ');
 };
 
-export { formatTimeStamp, firstCharToUpper };
+export { firstCharToUpper };

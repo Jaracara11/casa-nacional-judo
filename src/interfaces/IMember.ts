@@ -3,7 +3,7 @@ interface IMember {
   id?: string;
   firstName: string;
   lastName: string;
-  birthDate: Timestamp;
+  birthDate: string;
   bloodType?: string;
   identification?: string;
   address: string;
