@@ -9,3 +9,9 @@ body {
   margin: 0;
   padding: 0;
 }
+
+.App {
+  display: grid;
+  grid: min-content auto min-content / 1fr;
+  min-height: 100vh;
+}

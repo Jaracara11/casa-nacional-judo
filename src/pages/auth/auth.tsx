@@ -27,7 +27,7 @@ const Auth = () => {
     setLoadingData(true);
     try {
       await signIn(values.email, values.password);
-      navigate(`/${params.site}/admin-panel`);
+      navigate('/');
     } catch (err) {
       console.log(err);
       SwalObj.fire({
@@ -43,12 +43,12 @@ const Auth = () => {
     <Spinner />
   ) : (
     <Formik initialValues={initialValues} validationSchema={validation} onSubmit={handleOnAuth}>
-      <div className='form-container'>
-        <h2>Login</h2>
+      <div className='login-container'>
+        <h1>Login</h1>
         <Form className='form-control'>
           <InputFormik control='input' type='email' label='Email:' name='email' />
           <InputFormik control='input' type='password' label='Password:' name='password' />
-          <Button variant='btn btn-secondary btn-lg login-btn' type='submit'>
+          <Button variant='btn btn-primary btn-lg login-btn' type='submit'>
             Login
           </Button>
         </Form>
