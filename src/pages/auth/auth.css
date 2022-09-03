@@ -1,4 +1,17 @@
 .login-container {
+  /* display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr; */
+}
+
+.login-container h1 {
+  margin-top: 6rem;
+}
+
+.login-container form {
+  max-width: 600px;
+  min-height: 220px;
+  margin: 0 auto 0;
 }
 
 .login-btn {

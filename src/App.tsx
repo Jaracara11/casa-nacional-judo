@@ -1,4 +1,4 @@
-import './styles/globalStyle.css';
+import './styles/App.css';
 import Router from './router/router';
 import { UserContextProvider } from './context/userContext';
 import Navbar from './components/navbar/navbar';

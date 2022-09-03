@@ -44,12 +44,12 @@ const Auth = () => {
   ) : (
     <Formik initialValues={initialValues} validationSchema={validation} onSubmit={handleOnAuth}>
       <div className='login-container'>
-        <h1>Login</h1>
+        <h1>Bienvenido</h1>
         <Form className='form-control'>
           <InputFormik control='input' type='email' label='Email:' name='email' />
           <InputFormik control='input' type='password' label='Password:' name='password' />
           <Button variant='btn btn-primary btn-lg login-btn' type='submit'>
-            Login
+            Acceder
           </Button>
         </Form>
       </div>
