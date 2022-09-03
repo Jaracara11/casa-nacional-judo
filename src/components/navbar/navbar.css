@@ -4,4 +4,5 @@ header {
 
 header p {
   color: white;
+  margin: 0.5rem auto;
 }
