@@ -8,9 +8,9 @@ const Router = () => {
   return (
     <Routes>
       <Route path='*' element={<NotFound />} />
-      <Route path='/' element={<Auth />} />
+      <Route path='/auth' element={<Auth />} />
       <Route element={<ProtectedRoutes />}>
-        <Route path='/home' element={<Home />} />
+        <Route path='/' element={<Home />} />
       </Route>
     </Routes>
   );
