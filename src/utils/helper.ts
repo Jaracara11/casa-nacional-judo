@@ -1,7 +1,7 @@
 import { Timestamp } from 'firebase/firestore/lite';
 
 const formatTimeStamp = (timeStamp: Timestamp) => {
-  return new Date(timeStamp.seconds * 1000).toLocaleTimeString([], { year: 'numeric', month: '2-digit', day: 'numeric' });
+  return new Date(timeStamp.seconds * 1000).toLocaleTimeString('es-ES', { year: 'numeric', month: '2-digit', day: 'numeric' });
 };
 
 const firstCharToUpper = (str: string) => {
