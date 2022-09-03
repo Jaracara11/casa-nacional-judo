@@ -4,7 +4,7 @@ import { auth } from '../utils/firebase';
 
 const UserContext = createContext<string | any>(null);
 
-function UserContextProvider({ children }: any) {
+const UserContextProvider = ({ children }: any) => {
   const [user, setUser] = useState({});
   const [userSite, setUserSite] = useState('');
 
@@ -21,10 +21,10 @@ function UserContextProvider({ children }: any) {
   }, []);
 
   return <UserContext.Provider value={{ signIn, user, userSite }}>{children}</UserContext.Provider>;
-}
+};
 
-function UserAuth() {
+const UserAuth = () => {
   return useContext(UserContext);
-}
+};
 
 export { UserContextProvider, UserAuth };

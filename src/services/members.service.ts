@@ -10,16 +10,16 @@ const docRef = (id: string, colRef: string) => {
   return doc(db, colRef, id);
 };
 
-async function getAllMembers() {
+const getAllMembers = async () => {
   const q = query(collectionRef(membersCollection), orderBy('firstName'));
   const data = await getDocs(q);
   return data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-}
+};
 
-async function getAppointmentById(id: string, colRef: string) {
+const getAppointmentById = async (id: string, colRef: string) => {
   const docSnap = await getDoc(docRef(id, colRef));
   return docSnap.data();
-}
+};
 
 // async function createAppointment(data: IAppointment, colRef: string) {
 //   data.createdAt = Timestamp.fromDate(new Date(Date.now()));
@@ -32,8 +32,8 @@ async function getAppointmentById(id: string, colRef: string) {
 //   return appointment;
 // }
 
-async function deleteAppointment(id: string, colRef: string) {
+const deleteAppointment = async (id: string, colRef: string) => {
   await deleteDoc(docRef(id, colRef));
-}
+};
 
 export { getAllMembers, getAppointmentById, deleteAppointment };
