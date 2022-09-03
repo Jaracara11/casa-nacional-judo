@@ -43,21 +43,15 @@ const Auth = () => {
     <Spinner />
   ) : (
     <Formik initialValues={initialValues} validationSchema={validation} onSubmit={handleOnAuth}>
-      <div>
-        <h2 className='login-title'>Login</h2>
-        <div className='login-form'>
-          <Form>
-            <div className='form-control'>
-              <InputFormik control='input' type='email' label='Email:' name='email' />
-              <InputFormik control='input' type='password' label='Password:' name='password' />
-              <div className='d-grid gap-2 mt-3'>
-                <Button variant='btn btn-secondary btn-lg btn-block' type='submit'>
-                  Login
-                </Button>
-              </div>
-            </div>
-          </Form>
-        </div>
+      <div className='form-container'>
+        <h2>Login</h2>
+        <Form className='form-control'>
+          <InputFormik control='input' type='email' label='Email:' name='email' />
+          <InputFormik control='input' type='password' label='Password:' name='password' />
+          <Button variant='btn btn-secondary btn-lg login-btn' type='submit'>
+            Login
+          </Button>
+        </Form>
       </div>
     </Formik>
   );
