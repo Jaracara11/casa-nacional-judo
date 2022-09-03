@@ -1,5 +1,5 @@
 import './auth.css';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Formik, Form } from 'formik';
 import { UserAuth } from '../../context/userContext';
