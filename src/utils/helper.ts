@@ -1,5 +1,3 @@
-import { Timestamp } from 'firebase/firestore/lite';
-
 const firstCharToUpper = (str: string) => {
   const sentence = str.toLowerCase().split(' ');
   for (let i = 0; i < sentence.length; i++) {

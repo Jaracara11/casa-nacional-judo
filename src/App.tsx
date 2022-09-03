@@ -4,7 +4,7 @@ import { UserContextProvider } from './context/userContext';
 import { Navbar } from './components/navbar/navbar';
 import { Footer } from './components/footer/footer';
 
-const App = () => {
+export const App = () => {
   return (
     <div className='App'>
       <UserContextProvider>
@@ -21,5 +21,3 @@ const App = () => {
     </div>
   );
 };
-
-export default App;
