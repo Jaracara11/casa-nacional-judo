@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 
-const NavigateBtn = ({ variant, route, text }: { variant: string; route: string; text: string }) => {
+export const NavigateBtn = ({ variant, route, text }: { variant: string; route: string; text: string }) => {
   const navigate = useNavigate();
 
   const handleClick = (e: any) => {
@@ -15,5 +15,3 @@ const NavigateBtn = ({ variant, route, text }: { variant: string; route: string;
     </Button>
   );
 };
-
-export default NavigateBtn;

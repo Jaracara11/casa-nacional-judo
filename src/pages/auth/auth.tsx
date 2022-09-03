@@ -3,18 +3,16 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Formik, Form } from 'formik';
 import { UserAuth } from '../../context/userContext';
-import { useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { signInValidation } from '../../utils/validations';
-import Spinner from '../../components/spinner/spinner';
-import InputFormik from '../../components/formik/inputFormik';
+import { Spinner } from '../../components/spinner/spinner';
+import { InputFormik } from '../../components/formik/inputFormik';
 import Button from 'react-bootstrap/Button';
 import IAuthUser from '../../interfaces/IAuthUser';
 
 const Auth = () => {
   const SwalObj = Swal.mixin({});
   const { signIn } = UserAuth();
-  const params = useParams();
   const [loadingData, setLoadingData] = useState(false);
   const navigate = useNavigate();
   const validation = signInValidation;

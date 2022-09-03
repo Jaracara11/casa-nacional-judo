@@ -2,10 +2,10 @@ import Table from 'react-bootstrap/esm/Table';
 import { useState, useEffect } from 'react';
 import { getAllMembers } from '../../services/members.service';
 import IMember from '../../interfaces/IMember';
-import Spinner from '../spinner/spinner';
-import NavigateBtn from '../buttons/navigateButton/navigateBtn';
+import { Spinner } from '../spinner/spinner';
+import { NavigateBtn } from '../buttons/navigateButton/navigateBtn';
 
-const MembersTable = () => {
+export const MembersTable = () => {
   const [loadingData, setLoadingData] = useState(true);
   const [members, setMembers] = useState<any[]>([]);
 
@@ -57,5 +57,3 @@ const MembersTable = () => {
     </Table>
   );
 };
-
-export default MembersTable;

@@ -1,6 +1,6 @@
 import { Field, ErrorMessage } from 'formik';
 
-const InputFormik = ({ label, name, ...rest }: any) => {
+export const InputFormik = ({ label, name, ...rest }: any) => {
   return (
     <>
       <label htmlFor={name}>{label}</label>
@@ -9,5 +9,3 @@ const InputFormik = ({ label, name, ...rest }: any) => {
     </>
   );
 };
-
-export default InputFormik;

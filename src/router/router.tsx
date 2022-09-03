@@ -1,10 +1,10 @@
 import React, { Routes, Route } from 'react-router-dom';
-import ProtectedRoutes from './protectedRoutes';
-import NotFound from '../pages/notFound/notFound';
+import { ProtectedRoutes } from './protectedRoutes';
+import { NotFound } from '../pages/notFound/notFound';
 import Home from '../pages/home/home';
 import Auth from '../pages/auth/auth';
 
-const Router = () => {
+export const Router = () => {
   return (
     <Routes>
       <Route path='*' element={<NotFound />} />
@@ -15,5 +15,3 @@ const Router = () => {
     </Routes>
   );
 };
-
-export default Router;
