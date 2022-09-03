@@ -1,8 +1,9 @@
+import { Timestamp } from 'firebase/firestore/lite';
 interface IMember {
-  memberId?: number;
+  id?: string;
   firstName: string;
   lastName: string;
-  birthDate: Date;
+  birthDate: Timestamp;
   bloodType?: string;
   identification?: string;
   address: string;
@@ -10,7 +11,7 @@ interface IMember {
   phone2?: string;
   email?: string;
   belt?: string;
-  signUpDate?: Date;
+  signUpDate?: Timestamp;
   monthlyFee?: number;
   anualFee?: number;
   totalAmountDue?: number;

@@ -1,6 +1,7 @@
-import { collection, getDocs, getDoc, addDoc, updateDoc, deleteDoc, doc, query, limit, orderBy, Timestamp } from 'firebase/firestore/lite';
+import { collection, getDocs, getDoc, addDoc, updateDoc, deleteDoc, doc, query, orderBy, Timestamp } from 'firebase/firestore/lite';
 import { db } from '../utils/firebase';
 
+const membersCollection = 'members';
 const collectionRef = (colRef: string) => {
   return collection(db, colRef);
 };
@@ -9,8 +10,8 @@ const docRef = (id: string, colRef: string) => {
   return doc(db, colRef, id);
 };
 
-async function getAllAppointments(colRef: string) {
-  const q = query(collectionRef(colRef), limit(50), orderBy('createdAt'));
+async function getAllMembers() {
+  const q = query(collectionRef(membersCollection), orderBy('firstName'));
   const data = await getDocs(q);
   return data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
 }
@@ -35,4 +36,4 @@ async function deleteAppointment(id: string, colRef: string) {
   await deleteDoc(docRef(id, colRef));
 }
 
-export { getAllAppointments, getAppointmentById, deleteAppointment };
+export { getAllMembers, getAppointmentById, deleteAppointment };

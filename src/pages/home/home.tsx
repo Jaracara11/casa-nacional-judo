@@ -1,5 +1,9 @@
+import MembersTable from "../../components/membersTable/membersTable";
+
 const Home = () => {
-  return <p>Home</p>;
+  return <>
+  <MembersTable/>
+  </>;
 };
 
 export default Home;
