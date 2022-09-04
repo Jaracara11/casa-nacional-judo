@@ -1,4 +1,5 @@
 import { collection, getDocs, getDoc, addDoc, updateDoc, deleteDoc, doc, query, orderBy, Timestamp } from 'firebase/firestore/lite';
+import IMember from '../interfaces/IMember';
 import { db } from '../utils/firebase';
 
 const membersCollection = 'members';
@@ -16,9 +17,9 @@ const getAllMembers = async () => {
   return data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
 };
 
-const getAppointmentById = async (id: string, colRef: string) => {
-  const docSnap = await getDoc(docRef(id, colRef));
-  return docSnap.data();
+const getMemberById = async (id: string) => {
+  const docSnap = await getDoc(docRef(id, membersCollection));
+  return docSnap.data() as IMember;
 };
 
 // async function createAppointment(data: IAppointment, colRef: string) {
@@ -36,4 +37,4 @@ const deleteAppointment = async (id: string, colRef: string) => {
   await deleteDoc(docRef(id, colRef));
 };
 
-export { getAllMembers, getAppointmentById, deleteAppointment };
+export { getAllMembers, getMemberById, deleteAppointment };

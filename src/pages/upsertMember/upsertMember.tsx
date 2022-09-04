@@ -4,56 +4,39 @@ import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { Formik, Form } from 'formik';
 import Swal from 'sweetalert2';
-import { signInValidation } from '../../utils/validations';
+import IMember from '../../interfaces/IMember';
+import { getMemberById } from '../../services/members.service';
+import { memberValidation } from '../../utils/validations';
 
 export const UpsertMember = () => {
   const navigate = useNavigate();
   const params = useParams();
   const [loadingData, setLoadingData] = useState(true);
-  const [categories, setCategories] = useState([]);
-  const [product, setProduct] = useState({});
-  const initialValues = {
-    productName: '',
-    categoryId: 0,
-    productCost: 0,
-    productStock: 0,
-    productDescription: ''
+  const [member, setMember] = useState<IMember | undefined>(undefined);
+  const validation = memberValidation;
+  const initialValues: IMember = {
+    firstName: '',
+    lastName: '',
+    birthDate: '',
+    address: '',
+    phone1: ''
   };
-  const validation = ValidationSchema.product;
+
+  const getMember = async () => {
+    await getMemberById(params.id!)
+      .then((response) => {
+        setMember(response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   useEffect(() => {
-    setLoadingData(true);
-    const getProductAndCategories = async () => {
-      if (params.id) {
-        await ProductService.getProductById(params.id)
-          .then((response) => {
-            setProduct(response);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      }
+    params.id && getMember();
+  });
 
-      await CategoryService.getAllCategories()
-        .then((response) => {
-          setCategories(
-            response.map((x) => {
-              return {
-                value: x.categoryId,
-                text: x.categoryName
-              };
-            })
-          );
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-      setLoadingData(false);
-    };
-    getProductAndCategories();
-  }, [params.id]);
-
-  const postProduct = (values) => {
+  const handleSubmit = (values: IMember) => {
     const SwalObj = Swal.mixin({
       customClass: {
         confirmButton: 'btn btn-outline-info m-3',
@@ -63,7 +46,7 @@ export const UpsertMember = () => {
     });
 
     SwalObj.fire({
-      title: `${params.id ? 'Update' : 'Save'} Product`,
+      title: `${params.id ? 'Actualizar' : 'Guardar'} Miembro`,
       html: `Are you sure you want to ${params.id ? 'update' : 'save'} this product?`,
       icon: `${params.id ? 'warning' : 'info'}`,
       showCancelButton: true,
