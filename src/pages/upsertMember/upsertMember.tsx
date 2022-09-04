@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { Formik, Form } from 'formik';
 import Swal from 'sweetalert2';
 import IMember from '../../interfaces/IMember';
-import { InputFormik } from '../../components/formik/inputFormik';
+import { FormikControl } from '../../components/formik/formikControl';
 import { getMemberById, updateMember, createMember } from '../../services/members.service';
 import { memberValidation } from '../../utils/validations';
 import { Spinner } from '../../components/spinner/spinner';
@@ -30,6 +30,7 @@ export const UpsertMember = () => {
     const getMember = async () => {
       await getMemberById(params.id!)
         .then((response) => {
+          console.log(response);
           setMember(response);
         })
         .catch((err) => {
@@ -100,16 +101,16 @@ export const UpsertMember = () => {
         <h1>{params.id ? 'Editar' : 'Agregar'} Miembro</h1>
         <div className='form-control'>
           <div className='form-group'>
-            <InputFormik control='input' type='text' label='Nombre:' name='firstName' />
+            <FormikControl control='input' type='text' label='Nombre:' name='firstName' />
           </div>
           <div className='form-group'>
-            <InputFormik control='input' type='text' label='Apellido:' name='lastName' />
+            <FormikControl control='input' type='text' label='Apellido:' name='lastName' />
           </div>
           <div className='form-group'>
-            <InputFormik control='input' type='text' label='Fecha de nacimiento:' name='birthDate' />
+            <FormikControl control='input' type='text' label='Fecha de nacimiento:' name='birthDate' />
           </div>
           <div className='form-group'>
-            <InputFormik control='input' type='text' label='Tipo de sangre:' name='bloodType' />
+            <FormikControl control='input' type='text' label='Tipo de sangre:' name='bloodType' />
           </div>
           <div className='form-group'>
             <NavigateBtn route={'/'} variant='btn btn-outline-dark btn-lg' text={'Back'} />
