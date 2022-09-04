@@ -22,19 +22,18 @@ const getMemberById = async (id: string) => {
   return docSnap.data() as IMember;
 };
 
-// async function createAppointment(data: IAppointment, colRef: string) {
-//   data.createdAt = Timestamp.fromDate(new Date(Date.now()));
-//   const newAppointment = await addDoc(collectionRef(colRef), data);
-//   return newAppointment;
-// }
-
-// async function updateAppointment(colRef: string, data: IAppointment) {
-//   const appointment = await updateDoc(docRef(data.id, colRef), { data });
-//   return appointment;
-// }
-
-const deleteAppointment = async (id: string, colRef: string) => {
-  await deleteDoc(docRef(id, colRef));
+const createMember = async (data: IMember) => {
+  const newMember = await addDoc(collectionRef(membersCollection), data);
+  return newMember;
 };
 
-export { getAllMembers, getMemberById, deleteAppointment };
+const updateMember = async (data: IMember) => {
+  const member = await updateDoc(docRef(data.id!, membersCollection), { data });
+  return member;
+};
+
+const deleteMember = async (id: string) => {
+  await deleteDoc(docRef(id, membersCollection));
+};
+
+export { getAllMembers, getMemberById, createMember, updateMember, deleteMember };
