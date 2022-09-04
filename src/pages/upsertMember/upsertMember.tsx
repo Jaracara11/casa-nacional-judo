@@ -1,13 +1,16 @@
-import './UpsertProduct.css';
+import './upsertmember.css';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { Formik, Form } from 'formik';
 import Swal from 'sweetalert2';
 import IMember from '../../interfaces/IMember';
+import { InputFormik } from '../../components/formik/inputFormik';
 import { getMemberById, updateMember, createMember } from '../../services/members.service';
 import { memberValidation } from '../../utils/validations';
 import { Spinner } from '../../components/spinner/spinner';
+import { NavigateBtn } from '../../components/buttons/navigateButton/navigateBtn';
+import { Button } from 'react-bootstrap';
 
 export const UpsertMember = () => {
   const navigate = useNavigate();
@@ -92,30 +95,18 @@ export const UpsertMember = () => {
   return loadingData ? (
     <Spinner />
   ) : (
-    <Formik initialValues={params.id ? product : initialValues} validationSchema={validation} onSubmit={postProduct}>
+    <Formik initialValues={params.id ? member! : initialValues} validationSchema={validation} onSubmit={handleSubmit}>
       <Form>
-        <h1>{params.id ? 'Edit' : 'Add'} Product</h1>
+        <h1>{params.id ? 'Editar' : 'Agregar'} Miembro</h1>
         <div className='form-control'>
           <div className='form-group m-3'>
-            <FormikControl control='input' type='text' label='Product Name:' name='productName' />
+            <InputFormik control='input' type='text' label='Product Name:' name='productName' />
           </div>
           <div className='form-group m-3'>
-            <FormikControl control='select' label='Product Category:' name='categoryId' options={categories} />
-          </div>
-          <div className='form-group m-3'>
-            <FormikControl control='input' type='number' label='Product Cost:' name='productCost' />
-          </div>
-          <div className='form-group m-3'>
-            <FormikControl control='input' type='number' label='Product Stock:' name='productStock' />
-          </div>
-          <div className='form-group m-3'>
-            <FormikControl as='textarea' cols='2' rows='4' control='input' type='text' label='Product Description:' name='productDescription' />
-          </div>
-          <div className='form-group m-3'>
-            <NavigateButton route={'/'} className='btn btn-outline-dark btn-lg' text={'Back'} />
-            <button className='btn btn-secondary btn-lg btn-block' type='submit'>
+            <NavigateBtn route={'/'} variant='btn btn-outline-dark btn-lg' text={'Back'} />
+            <Button variant='btn btn-secondary btn-lg btn-block' type='submit'>
               Save
-            </button>
+            </Button>
           </div>
         </div>
       </Form>

@@ -1,3 +1,4 @@
+import './membersTable.css'
 import Table from 'react-bootstrap/esm/Table';
 import { useState, useEffect } from 'react';
 import { getAllMembers } from '../../services/members.service';
