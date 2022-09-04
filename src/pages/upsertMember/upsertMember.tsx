@@ -99,10 +99,19 @@ export const UpsertMember = () => {
       <Form>
         <h1>{params.id ? 'Editar' : 'Agregar'} Miembro</h1>
         <div className='form-control'>
-          <div className='form-group m-3'>
-            <InputFormik control='input' type='text' label='Product Name:' name='productName' />
+          <div className='form-group'>
+            <InputFormik control='input' type='text' label='Nombre:' name='firstName' />
           </div>
-          <div className='form-group m-3'>
+          <div className='form-group'>
+            <InputFormik control='input' type='text' label='Apellido:' name='lastName' />
+          </div>
+          <div className='form-group'>
+            <InputFormik control='input' type='text' label='Fecha de nacimiento:' name='birthDate' />
+          </div>
+          <div className='form-group'>
+            <InputFormik control='input' type='text' label='Tipo de sangre:' name='bloodType' />
+          </div>
+          <div className='form-group'>
             <NavigateBtn route={'/'} variant='btn btn-outline-dark btn-lg' text={'Back'} />
             <Button variant='btn btn-secondary btn-lg btn-block' type='submit'>
               Save

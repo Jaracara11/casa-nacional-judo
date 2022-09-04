@@ -14,8 +14,8 @@ const memberValidation = Yup.object({
     .min(3, 'Nombre no puede tener menos de 3 caracteres.')
     .required('Campo requerido.'),
   lastName: Yup.string()
-    .max(25, 'Apellidos no pueden exceder de 25 caracteres.')
-    .min(3, 'Apellidos no pueden tener menos de 3 caracteres.')
+    .max(25, 'Apellido no puede exceder de 25 caracteres.')
+    .min(3, 'Apellido no puede tener menos de 3 caracteres.')
     .required('Campo requerido.'),
   birthDate: Yup.string().required('Campo requerido.'),
   bloodType: Yup.string(),
