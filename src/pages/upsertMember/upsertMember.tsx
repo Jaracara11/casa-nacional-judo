@@ -15,7 +15,7 @@ export const UpsertMember = () => {
   const navigate = useNavigate();
   const params = useParams();
   const [loadingData, setLoadingData] = useState(true);
-  const [member, setMember] = useState({} as IMember);
+  const [member, setMember] = useState<any>({});
   const initialValues: IMember = {
     id: '',
     firstName: '',
@@ -39,15 +39,15 @@ export const UpsertMember = () => {
       await getMemberById(params.id!)
         .then((response) => {
           setMember(response);
+          console.log(response);
         })
         .catch((err) => {
           console.log(err);
         });
+      setLoadingData(false);
     };
-    params.id && getMember();
-    console.log(member);
-    setLoadingData(false);
-  }, []);
+    getMember();
+  }, [params.id]);
 
   const handleSubmit = (values: IMember) => {
     const SwalObj = Swal.mixin({
