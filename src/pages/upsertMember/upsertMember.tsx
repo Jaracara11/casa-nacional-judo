@@ -16,8 +16,7 @@ export const UpsertMember = () => {
   const navigate = useNavigate();
   const params = useParams();
   const [loadingData, setLoadingData] = useState(true);
-  const [member, setMember] = useState<IMember | undefined>(undefined);
-  const validation = memberValidation;
+  const [member, setMember] = useState({} as IMember);
   const initialValues: IMember = {
     firstName: '',
     lastName: '',
@@ -96,14 +95,14 @@ export const UpsertMember = () => {
   return loadingData ? (
     <Spinner />
   ) : (
-    <Formik initialValues={params.id ? member! : initialValues} validationSchema={validation} onSubmit={handleSubmit}>
+    <Formik initialValues={params.id ? member : initialValues} validationSchema={memberValidation} onSubmit={handleSubmit}>
       <Form>
         <h1>{params.id ? 'Editar' : 'Agregar'} Miembro</h1>
         <div className='form-control'>
           <div className='form-group'>
             <FormikControl control='input' type='text' label='Nombre:' name='firstName' />
           </div>
-          <div className='form-group'>
+          {/* <div className='form-group'>
             <FormikControl control='input' type='text' label='Apellido:' name='lastName' />
           </div>
           <div className='form-group'>
@@ -111,7 +110,7 @@ export const UpsertMember = () => {
           </div>
           <div className='form-group'>
             <FormikControl control='input' type='text' label='Tipo de sangre:' name='bloodType' />
-          </div>
+          </div> */}
           <div className='form-group'>
             <NavigateBtn route={'/'} variant='btn btn-outline-dark btn-lg' text={'Back'} />
             <Button variant='btn btn-secondary btn-lg btn-block' type='submit'>
