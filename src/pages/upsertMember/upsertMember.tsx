@@ -38,7 +38,6 @@ export const UpsertMember = () => {
     const getMember = async () => {
       await getMemberById(params.id!)
         .then((response) => {
-          console.log(response);
           setMember(response);
         })
         .catch((err) => {
@@ -46,8 +45,9 @@ export const UpsertMember = () => {
         });
     };
     params.id && getMember();
+    console.log(member);
     setLoadingData(false);
-  }, [params.id]);
+  }, []);
 
   const handleSubmit = (values: IMember) => {
     const SwalObj = Swal.mixin({
