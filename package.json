@@ -7,7 +7,7 @@
     "@types/react": "^18.0.18",
     "@types/react-dom": "^18.0.6",
     "bootstrap": "^5.2.0",
-    "firebase": "^9.9.3",
+    "firebase": "^9.9.4",
     "formik": "^2.2.9",
     "gulp": "^4.0.2",
     "gulp-inline-source": "^4.0.0",
