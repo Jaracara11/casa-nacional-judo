@@ -1,6 +1,4 @@
-interface IAuthUser {
+export interface IAuthUser {
   email: string;
   password: string;
 }
-
-export default IAuthUser;

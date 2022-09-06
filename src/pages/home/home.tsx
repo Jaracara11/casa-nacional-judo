@@ -1,9 +1,9 @@
 import { MembersTable } from '../../components/membersTable/membersTable';
 
-const Home = () => {
-  return <>
-  <MembersTable/>
-  </>;
+export const Home = () => {
+  return (
+    <div>
+      <MembersTable />
+    </div>
+  );
 };
-
-export default Home;

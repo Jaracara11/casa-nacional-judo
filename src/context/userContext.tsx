@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 import { signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../utils/firebase';
 
@@ -6,7 +6,6 @@ const UserContext = createContext<string | any>(null);
 
 const UserContextProvider = ({ children }: any) => {
   const [user, setUser] = useState({});
-  const [userSite, setUserSite] = useState('');
 
   const signIn = (email: string, password: string) => signInWithEmailAndPassword(auth, email, password);
 
@@ -20,7 +19,7 @@ const UserContextProvider = ({ children }: any) => {
     };
   }, []);
 
-  return <UserContext.Provider value={{ signIn, user, userSite }}>{children}</UserContext.Provider>;
+  return <UserContext.Provider value={{ signIn, user }}>{children}</UserContext.Provider>;
 };
 
 const UserAuth = () => {

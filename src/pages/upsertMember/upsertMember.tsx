@@ -1,11 +1,10 @@
 import './upsertmember.css';
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { Formik, Form } from 'formik';
 import Swal from 'sweetalert2';
-import IMember from '../../interfaces/IMember';
-import { FormikControl } from '../../components/formik/formikControl';
+import { IMember } from '../../interfaces/IMember';
+import { InputFormik } from '../../components/formik/inputFormik';
 import { getMemberById, updateMember, createMember } from '../../services/members.service';
 import { memberValidation } from '../../utils/validations';
 import { Spinner } from '../../components/spinner/spinner';
@@ -18,11 +17,21 @@ export const UpsertMember = () => {
   const [loadingData, setLoadingData] = useState(true);
   const [member, setMember] = useState({} as IMember);
   const initialValues: IMember = {
+    id: '',
     firstName: '',
     lastName: '',
     birthDate: '',
+    bloodType: '',
+    identification: '',
     address: '',
-    phone1: ''
+    phone1: '',
+    phone2: '',
+    email: '',
+    belt: '',
+    signUpDate: '',
+    monthlyFee: 0,
+    anualFee: 0,
+    totalAmountDue: 0
   };
 
   useEffect(() => {
@@ -100,7 +109,7 @@ export const UpsertMember = () => {
         <h1>{params.id ? 'Editar' : 'Agregar'} Miembro</h1>
         <div className='form-control'>
           <div className='form-group'>
-            <FormikControl control='input' type='text' label='Nombre:' name='firstName' />
+            <InputFormik control='input' type='text' label='Nombre:' name='firstName' />
           </div>
           {/* <div className='form-group'>
             <FormikControl control='input' type='text' label='Apellido:' name='lastName' />

@@ -1,4 +1,4 @@
-interface IMember {
+export interface IMember {
   id?: string;
   firstName: string;
   lastName: string;
@@ -15,5 +15,3 @@ interface IMember {
   anualFee?: number;
   totalAmountDue?: number;
 }
-
-export default IMember;

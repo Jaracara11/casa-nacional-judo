@@ -8,9 +8,9 @@ import { signInValidation } from '../../utils/validations';
 import { Spinner } from '../../components/spinner/spinner';
 import { InputFormik } from '../../components/formik/inputFormik';
 import Button from 'react-bootstrap/Button';
-import IAuthUser from '../../interfaces/IAuthUser';
+import { IAuthUser } from '../../interfaces/IAuthUser';
 
-const Auth = () => {
+export const Auth = () => {
   const SwalObj = Swal.mixin({});
   const { signIn } = UserAuth();
   const [loadingData, setLoadingData] = useState(false);
@@ -54,5 +54,3 @@ const Auth = () => {
     </Formik>
   );
 };
-
-export default Auth;
