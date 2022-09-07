@@ -8,7 +8,7 @@ import { NavigateBtn } from '../buttons/navigateButton/navigateBtn';
 
 export const MembersTable = () => {
   const [loadingData, setLoadingData] = useState(true);
-  const [members, setMembers] = useState<any[]>([]);
+  const [members, setMembers] = useState<IMember[]>([]);
 
   useEffect(() => {
     const loadMembers = async () => {

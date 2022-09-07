@@ -14,7 +14,7 @@ const docRef = (id: string, colRef: string) => {
 const getAllMembers = async () => {
   const q = query(collectionRef(membersCollection), orderBy('firstName'));
   const data = await getDocs(q);
-  return data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+  return data.docs.map((doc: any) => ({ ...doc.data(), id: doc.id }));
 };
 
 const getMemberById = async (id: string) => {
