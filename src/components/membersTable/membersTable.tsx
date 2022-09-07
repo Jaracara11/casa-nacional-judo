@@ -15,7 +15,6 @@ export const MembersTable = () => {
       await getAllMembers()
         .then((response) => {
           setMembers(response);
-          console.log(response);
         })
         .catch((err) => {
           console.log(err);

@@ -9,9 +9,9 @@ export interface IMember {
   phone1: string;
   phone2?: string;
   email?: string;
-  belt?: string;
-  signUpDate?: string;
-  monthlyFee?: number;
-  anualFee?: number;
-  totalAmountDue?: number;
+  belt: string;
+  signUpDate: string;
+  monthlyFee: number;
+  anualFee: number;
+  totalAmountDue: number;
 }

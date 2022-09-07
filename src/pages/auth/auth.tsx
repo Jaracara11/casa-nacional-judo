@@ -6,7 +6,7 @@ import { UserAuth } from '../../context/userContext';
 import Swal from 'sweetalert2';
 import { signInValidation } from '../../utils/validations';
 import { Spinner } from '../../components/spinner/spinner';
-import { InputFormik } from '../../components/formik/inputFormik';
+import { InputFormik } from '../../components/formikComponents/inputFormik';
 import Button from 'react-bootstrap/Button';
 import { IAuthUser } from '../../interfaces/IAuthUser';
 
