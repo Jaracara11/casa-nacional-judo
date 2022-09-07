@@ -22,9 +22,9 @@ const memberValidation = Yup.object({
   identification: Yup.string().max(11, 'Número de identificación no puede exceder de 11 caracteres.'),
   address: Yup.string().max(50, 'Dirección no puede exceder de 50 caracteres.').required('Campo requerido.'),
   phone1: Yup.string()
-    .test('Número de telefono no puede exceder de 10 caracteres.', (val) => val?.length === 10)
+    .test('Número de teléfono no puede exceder de 10 caracteres.', (val) => val?.length === 10)
     .required('Campo requerido.'),
-  phone2: Yup.string().test('Número de telefono no puede exceder de 10 caracteres.', (val) => val?.length === 10),
+  phone2: Yup.string().test('Número de teléfono no puede exceder de 10 caracteres.', (val) => val?.length === 10),
   email: Yup.string().email(),
   belt: Yup.string(),
   signUpDate: Yup.string(),
