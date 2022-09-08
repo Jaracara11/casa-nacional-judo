@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { Formik, Form } from 'formik';
 import { UserAuth } from '../../context/userContext';
 import Swal from 'sweetalert2';
-import { signInValidation } from '../../utils/validations';
+import { signInValidation } from '../../utils/validationSchemas';
 import { Spinner } from '../../components/spinner/spinner';
 import { InputFormik } from '../../components/formikComponents/inputFormik';
 import Button from 'react-bootstrap/Button';

@@ -14,4 +14,5 @@ export interface IMember {
   monthlyFee: number;
   anualFee: number;
   totalAmountDue: number;
+  documentImage?: File;
 }
