@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { UserAuth } from '../../context/userContext';
 import { signInValidation } from '../../utils/yupValidationSchema';
 import { Spinner } from '../../components/spinner/spinner';
+import { ErrorView } from '../../components/errorView/errorView';
 import { IAuthUser } from '../../interfaces/IAuthUser';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -25,6 +26,7 @@ export const Auth = () => {
   });
 
   const submitAuth: any = async (userData: IAuthUser) => {
+    console.log(userData);
     setLoadingData(true);
     try {
       await signIn(userData.email, userData.password);
@@ -47,7 +49,9 @@ export const Auth = () => {
       <h1>Bienvenido</h1>
       <form className='form-control' onSubmit={handleSubmit(submitAuth)}>
         <input className='form-control' {...register} type='email' placeholder='Email...' name='email' />
+        <ErrorView error={errors.email} />
         <input className='form-control' {...register} type='password' placeholder='Contraseña' name='password' />
+        <ErrorView error={errors.password} />
         <Button variant='btn btn-primary btn-lg login-btn' type='submit'>
           Acceder
         </Button>
