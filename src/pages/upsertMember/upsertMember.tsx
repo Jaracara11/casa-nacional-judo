@@ -4,7 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { IMember } from '../../interfaces/IMember';
 import { getMemberById, updateMember, createMember } from '../../services/members.service';
-import { memberValidation } from '../../utils/validationSchemas';
+import { memberValidation } from '../../utils/yupValidationSchema';
 import { Spinner } from '../../components/spinner/spinner';
 import { NavigateBtn } from '../../components/buttons/navigateButton/navigateBtn';
 import { ImagePreview } from '../../components/imagePreview/imagePreview';
