@@ -1,4 +1,5 @@
 import * as Yup from 'yup';
+import { SUPPORTED_FORMATS } from './helper';
 
 const signInValidation = Yup.object({
   email: Yup.string().email().required('Campo obligatorio.'),
@@ -30,7 +31,14 @@ const memberValidation = Yup.object({
   signUpDate: Yup.string(),
   monthlyFee: Yup.number().positive(),
   anualFee: Yup.number().positive(),
-  totalAmountDue: Yup.number()
+  totalAmountDue: Yup.number(),
+  documentImage: Yup.mixed()
+    .nullable()
+    .test(
+      'FILE_FORMAT',
+      'Formato invalido, favor subir imagen en .JPEG, .JPG o .PNG.',
+      (value) => !value || (value && SUPPORTED_FORMATS.includes(value?.type))
+    )
 });
 
 export { signInValidation, memberValidation };

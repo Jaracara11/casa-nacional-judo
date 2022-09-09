@@ -1,6 +1,6 @@
 import { IGenericObject } from '../interfaces/IGenericObject';
 
-const beltList: IGenericObject[] = [
+const BELT_LIST: IGenericObject[] = [
   { key: 'White', value: 'Blanco' },
   { key: 'Yellow', value: 'Amarillo' },
   { key: 'Orange', value: 'Naranja' },
@@ -9,6 +9,8 @@ const beltList: IGenericObject[] = [
   { key: 'Brown', value: 'Marron' },
   { key: 'Black', value: 'Negro' }
 ];
+
+const SUPPORTED_FORMATS: string[] = ['image/jpeg', 'image/jpg', 'image/png'];
 
 const firstCharToUpper = (str: string) => {
   const sentence = str.toLowerCase().split(' ');
@@ -19,4 +21,4 @@ const firstCharToUpper = (str: string) => {
   return sentence.toString().replaceAll(',', ' ');
 };
 
-export { firstCharToUpper, beltList };
+export { firstCharToUpper, BELT_LIST, SUPPORTED_FORMATS };

@@ -1,5 +1,5 @@
 import './upsertmember.css';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Formik, Form } from 'formik';
 import Swal from 'sweetalert2';
@@ -10,7 +10,8 @@ import { getMemberById, updateMember, createMember } from '../../services/member
 import { memberValidation } from '../../utils/validationSchemas';
 import { Spinner } from '../../components/spinner/spinner';
 import { NavigateBtn } from '../../components/buttons/navigateButton/navigateBtn';
-import { beltList } from '../../utils/helper';
+import { ImagePreview } from '../../components/imagePreview/imagePreview';
+import { BELT_LIST } from '../../utils/helper';
 import { Button } from 'react-bootstrap';
 
 export const UpsertMember = () => {
@@ -18,6 +19,8 @@ export const UpsertMember = () => {
   const params = useParams();
   const [loadingData, setLoadingData] = useState(true);
   const [member, setMember] = useState({} as IMember);
+  const [uploadedImage, setUploadedImage] = useState<File>();
+  const fileRef = useRef<any>(null);
   const initialValues: IMember = {
     firstName: '',
     lastName: '',
@@ -36,7 +39,6 @@ export const UpsertMember = () => {
       await getMemberById(params.id!)
         .then((response) => {
           setMember(response);
-          console.log(response);
         })
         .catch((err) => {
           console.log(err);
@@ -47,6 +49,7 @@ export const UpsertMember = () => {
   }, [params.id]);
 
   const handleSubmit = (values: IMember) => {
+    console.log(uploadedImage);
     const SwalObj = Swal.mixin({
       customClass: {
         confirmButton: 'btn btn-outline-info m-3',
@@ -142,7 +145,7 @@ export const UpsertMember = () => {
           </div>
 
           <div className='form-group'>
-            <DropdownFormik label='Grado:' name='belt' options={beltList} />
+            <DropdownFormik label='Grado:' name='belt' options={BELT_LIST} />
           </div>
 
           <div className='form-group'>
@@ -161,8 +164,33 @@ export const UpsertMember = () => {
             <InputFormik type='number' label='Monto total adeudado:' name='totalAmountDue' />
           </div>
 
-          <div className='form-group'>
-            <InputFormik type='file' accept='.jpg, .jpeg, .png' label='Foto de documento:' name='documentImage' />
+          {/* //TODO: Format this form with css */}
+          <div className='form-control mt-3 mb-3'>
+            <label htmlFor='documentImage'>Foto de documento:</label>
+            <br />
+            <input
+              hidden
+              ref={fileRef}
+              id='documentImage'
+              type='file'
+              accept='.jpg, .jpeg, .png'
+              name='documentImage'
+              onChange={(event) => {
+                setUploadedImage(event.target.files![0]);
+              }}
+            />
+          </div>
+
+          <div className='form-control'>
+            <Button
+              variant='btn btn-success mb-1'
+              onClick={() => {
+                fileRef.current.click();
+              }}>
+              Subir Documento
+            </Button>
+            <br />
+            {uploadedImage && <ImagePreview file={uploadedImage} />}
           </div>
 
           <div className='form-group'>
