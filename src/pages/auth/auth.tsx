@@ -1,12 +1,10 @@
 import './auth.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Formik, Form } from 'formik';
 import { UserAuth } from '../../context/userContext';
 import Swal from 'sweetalert2';
 import { signInValidation } from '../../utils/validationSchemas';
 import { Spinner } from '../../components/spinner/spinner';
-import { InputFormik } from '../../components/formikComponents/inputFormik';
 import Button from 'react-bootstrap/Button';
 import { IAuthUser } from '../../interfaces/IAuthUser';
 
@@ -40,17 +38,15 @@ export const Auth = () => {
   return loadingData ? (
     <Spinner />
   ) : (
-    <Formik initialValues={initialValues} validationSchema={validation} onSubmit={handleOnAuth}>
-      <div className='login-container'>
-        <h1>Bienvenido</h1>
-        <Form className='form-control'>
-          <InputFormik control='input' type='email' label='Email:' name='email' />
-          <InputFormik control='input' type='password' label='Password:' name='password' />
-          <Button variant='btn btn-primary btn-lg login-btn' type='submit'>
-            Acceder
-          </Button>
-        </Form>
-      </div>
-    </Formik>
+    <div className='login-container'>
+      <h1>Bienvenido</h1>
+      <form className='form-control'>
+        <input className='form-control' type='email' placeholder='Email...' name='email' />
+        <input className='form-control' type='password' placeholder='Contraseña' name='password' />
+        <Button variant='btn btn-primary btn-lg login-btn' type='submit'>
+          Acceder
+        </Button>
+      </form>
+    </div>
   );
 };
