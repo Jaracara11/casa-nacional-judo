@@ -34,6 +34,11 @@ export const UpsertMember = () => {
     totalAmountDue: 0
   };
 
+  const handleFileChange = (event: any) => {
+    setUploadedImage(event.target.files![0]);
+    member.documentImage = event.target.files![0];
+  };
+
   useEffect(() => {
     const getMember = async () => {
       await getMemberById(params.id!)
@@ -45,8 +50,10 @@ export const UpsertMember = () => {
         });
       setLoadingData(false);
     };
+
+    member.documentImage = uploadedImage;
     params.id ? getMember() : setLoadingData(false);
-  }, [params.id]);
+  }, [params.id, uploadedImage]);
 
   const handleSubmit = (values: IMember) => {
     const SwalObj = Swal.mixin({
@@ -167,19 +174,7 @@ export const UpsertMember = () => {
           <div className='form-control mt-3 mb-3'>
             <label htmlFor='documentImage'>Foto de documento:</label>
             <br />
-            <input
-              hidden
-              ref={fileRef}
-              id='documentImage'
-              type='file'
-              accept='.jpg, .jpeg, .png'
-              name='documentImage'
-              onChange={(event) => {
-                setUploadedImage(event.target.files![0]);
-                member.documentImage = event.target.files![0];
-                console.log(member.documentImage);
-              }}
-            />
+            <input hidden ref={fileRef} id='documentImage' type='file' accept='.jpg, .jpeg, .png' name='documentImage' onChange={handleFileChange} />
           </div>
 
           <div className='form-control'>
