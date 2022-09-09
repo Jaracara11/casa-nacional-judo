@@ -49,7 +49,6 @@ export const UpsertMember = () => {
   }, [params.id]);
 
   const handleSubmit = (values: IMember) => {
-    console.log(uploadedImage);
     const SwalObj = Swal.mixin({
       customClass: {
         confirmButton: 'btn btn-outline-info m-3',
@@ -177,6 +176,8 @@ export const UpsertMember = () => {
               name='documentImage'
               onChange={(event) => {
                 setUploadedImage(event.target.files![0]);
+                member.documentImage = event.target.files![0];
+                console.log(member.documentImage);
               }}
             />
           </div>
