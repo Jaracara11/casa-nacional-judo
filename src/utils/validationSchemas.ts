@@ -34,10 +34,11 @@ const memberValidation = Yup.object({
   totalAmountDue: Yup.number(),
   documentImage: Yup.mixed()
     .nullable()
+    .notRequired()
     .test(
       'FILE_FORMAT',
       'Formato invalido, favor subir imagen en .JPEG, .JPG o .PNG.',
-      (value) => !value || (value && SUPPORTED_FORMATS.includes(value?.type))
+      (value) => !value || (value && SUPPORTED_FORMATS.includes(value.type))
     )
 });
 
