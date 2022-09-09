@@ -174,17 +174,10 @@ export const UpsertMember = () => {
           <div className='form-control mt-3 mb-3'>
             <label htmlFor='documentImage'>Foto de documento:</label>
             <br />
-            <input hidden ref={fileRef} id='documentImage' type='file' accept='.jpg, .jpeg, .png' name='documentImage' onChange={handleFileChange} />
+            <input ref={fileRef} id='documentImage' type='file' accept='.jpg, .jpeg, .png' name='documentImage' onChange={handleFileChange} />
           </div>
 
           <div className='form-control'>
-            <Button
-              variant='btn btn-success mb-1'
-              onClick={() => {
-                fileRef.current.click();
-              }}>
-              Subir Documento
-            </Button>
             <br />
             {uploadedImage && <ImagePreview file={uploadedImage} />}
           </div>
