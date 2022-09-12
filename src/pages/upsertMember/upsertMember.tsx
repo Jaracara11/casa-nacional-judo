@@ -121,7 +121,7 @@ export const UpsertMember = () => {
 
       <div className='form-group'>
         <NavigateBtn route={'/'} variant='btn btn-outline-dark btn-lg' text={'Back'} />
-        <Button variant='btn btn-secondary btn-lg btn-block' type='submit'>
+        <Button variant='btn btn-primary btn-lg btn-block' type='submit'>
           Save
         </Button>
       </div>

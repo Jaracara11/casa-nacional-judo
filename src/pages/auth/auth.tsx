@@ -48,11 +48,11 @@ export const Auth = () => {
     <div className='login-container'>
       <h1>Bienvenido</h1>
       <form className='form-control' onSubmit={handleSubmit(submitAuth)}>
-        <input className='form-control' {...register('email')} type='email' placeholder='Email...' name='email' />
+        <input className='form-control mt-1' {...register('email')} type='email' placeholder='Email...' name='email' />
         <ErrorView error={errors.email} />
-        <input className='form-control' {...register('password')} type='password' placeholder='Contraseña' name='password' />
+        <input className='form-control mt-3' {...register('password')} type='password' placeholder='Contraseña' name='password' />
         <ErrorView error={errors.password} />
-        <Button variant='btn btn-primary btn-lg login-btn' type='submit'>
+        <Button variant='btn btn-primary btn-lg btn-block login-btn' type='submit'>
           Acceder
         </Button>
       </form>
