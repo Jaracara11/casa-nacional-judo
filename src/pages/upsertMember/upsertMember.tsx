@@ -13,23 +13,21 @@ import { NavigateBtn } from '../../components/buttons/navigateButton/navigateBtn
 import { ImagePreview } from '../../components/imagePreview/imagePreview';
 import { Button } from 'react-bootstrap';
 
+////////////////////////////////////////////////////////////////////////////////
+import { storage } from '../../utils/firebase';
+import { ref, getDownloadURL, uploadBytesResumable, StorageReference, UploadTask } from 'firebase/storage';
+
 export const UpsertMember = () => {
+    ////////////////////////////////////////////////////////////////////////////////
+
     const navigate = useNavigate();
     const params = useParams();
     const [loadingData, setLoadingData] = useState(false);
     const [member, setMember] = useState({} as IMember);
     const [uploadedImage, setUploadedImage] = useState<File>();
-    const [imgURL, setImgURL] = useState(null);
+    const [imgURL, setImgURL] = useState<string>('');
     const [progresspercent, setProgresspercent] = useState(0);
     const fileRef = useRef<any>(null);
-
-    const {
-        register,
-        handleSubmit,
-        formState: { errors }
-    } = useForm({
-        resolver: yupResolver(memberValidation)
-    });
 
     const initialValues: IMember = {
         firstName: '',
@@ -42,6 +40,28 @@ export const UpsertMember = () => {
         monthlyFee: 0,
         anualFee: 0,
         totalAmountDue: 0
+    };
+
+    const saveImage = (file: File) => {
+        const storageRef = ref(storage, `members-photos/${file.name}`);
+        const uploadTask = uploadBytesResumable(storageRef, file);
+
+        uploadTask.on(
+            'state_changed',
+            (snapshot) => {
+                const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+                setProgresspercent(progress);
+            },
+            (err) => {
+                console.log(err);
+            },
+            () => {
+                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                    console.log('url' + downloadURL);
+                    setImgURL(downloadURL);
+                });
+            }
+        );
     };
 
     const handleFileChange = (event: any) => {
@@ -63,7 +83,7 @@ export const UpsertMember = () => {
         };
         console.log('1 Render');
         params.id ? getMember() : setLoadingData(false);
-    }, [params.id, uploadedImage, member]);
+    }, [params.id, uploadedImage]);
 
     const submitUserData: any = (values: IMember) => {
         const SwalObj = Swal.mixin({
@@ -113,6 +133,8 @@ export const UpsertMember = () => {
                     });
                 }
 
+                console.log('docImg' + member.documentImage);
+                member.documentImage && saveImage(member.documentImage);
                 setLoadingData(false);
             }
         });
@@ -122,13 +144,21 @@ export const UpsertMember = () => {
         <Spinner />
     ) : (
         <div className='upsert-container'>
-            <form className='form-control' onSubmit={handleSubmit(submitUserData)}>
+            <form className='form-control'>
                 <h1>{params.id ? 'Editar' : 'Agregar'} Miembro</h1>
                 <div className='form-control'>
                     <label htmlFor='documentImage'>Foto de documento:</label>
-                    <input {...register('documentImage')} type='file' accept='.jpg, .jpeg, .png' name='documentImage' onChange={handleFileChange} />
-                    <ErrorView error={errors.documentImage} />
+                    <input type='file' accept='.jpg, .jpeg, .png' name='documentImage' onChange={handleFileChange} />
                 </div>
+
+                {!imgURL && (
+                    <div className='outerbar'>
+                        <div className='innerbar' style={{ width: `${progresspercent}%` }}>
+                            {progresspercent}%
+                        </div>
+                    </div>
+                )}
+                {imgURL && <img src={imgURL} alt='uploaded file' height={200} />}
 
                 {uploadedImage && (
                     <div className='form-control'>
@@ -139,7 +169,7 @@ export const UpsertMember = () => {
 
                 <div className='form-group'>
                     <NavigateBtn route={'/'} variant='btn btn-outline-dark btn-lg' text={'Back'} />
-                    <Button variant='btn btn-primary btn-lg btn-block' type='submit'>
+                    <Button variant='btn btn-primary btn-lg btn-block' onClick={submitUserData}>
                         Save
                     </Button>
                 </div>
