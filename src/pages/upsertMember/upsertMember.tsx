@@ -12,6 +12,7 @@ import { ErrorView } from '../../components/errorView/errorView';
 import { NavigateBtn } from '../../components/buttons/navigateButton/navigateBtn';
 import { ImagePreview } from '../../components/imagePreview/imagePreview';
 import { Button } from 'react-bootstrap';
+import ProgressBar from 'react-bootstrap/ProgressBar';
 
 ////////////////////////////////////////////////////////////////////////////////
 import { storage } from '../../utils/firebase';
@@ -26,7 +27,7 @@ export const UpsertMember = () => {
     const [member, setMember] = useState({} as IMember);
     const [uploadedImage, setUploadedImage] = useState<File>();
     const [imgURL, setImgURL] = useState<string>('');
-    const [progresspercent, setProgresspercent] = useState(0);
+    const [progressPercent, setProgressPercent] = useState(0);
     const fileRef = useRef<any>(null);
 
     const initialValues: IMember = {
@@ -50,7 +51,7 @@ export const UpsertMember = () => {
             'state_changed',
             (snapshot) => {
                 const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
-                setProgresspercent(progress);
+                setProgressPercent(progress);
             },
             (err) => {
                 console.log(err);
@@ -65,9 +66,11 @@ export const UpsertMember = () => {
     };
 
     const handleFileChange = (event: any) => {
+        setImgURL('');
         setUploadedImage(event.target.files![0]);
         member.documentImage = event.target.files![0];
         console.log(member.documentImage);
+        saveImage(member.documentImage!);
     };
 
     useEffect(() => {
@@ -83,7 +86,7 @@ export const UpsertMember = () => {
         };
         console.log('1 Render');
         params.id ? getMember() : setLoadingData(false);
-    }, [params.id, uploadedImage]);
+    }, [params.id, uploadedImage, imgURL]);
 
     const submitUserData: any = (values: IMember) => {
         const SwalObj = Swal.mixin({
@@ -151,21 +154,8 @@ export const UpsertMember = () => {
                     <input type='file' accept='.jpg, .jpeg, .png' name='documentImage' onChange={handleFileChange} />
                 </div>
 
-                {!imgURL && (
-                    <div className='outerbar'>
-                        <div className='innerbar' style={{ width: `${progresspercent}%` }}>
-                            {progresspercent}%
-                        </div>
-                    </div>
-                )}
-                {imgURL && <img src={imgURL} alt='uploaded file' height={200} />}
-
-                {uploadedImage && (
-                    <div className='form-control'>
-                        <br />
-                        <ImagePreview file={uploadedImage} />
-                    </div>
-                )}
+                {!imgURL && <ProgressBar now={progressPercent} label={`${progressPercent}%`} />}
+                {imgURL && <img src={imgURL} alt='uploaded file' height={200} width={200} />}
 
                 <div className='form-group'>
                     <NavigateBtn route={'/'} variant='btn btn-outline-dark btn-lg' text={'Back'} />
