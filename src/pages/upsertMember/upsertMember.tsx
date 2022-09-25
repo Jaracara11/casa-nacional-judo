@@ -58,7 +58,6 @@ export const UpsertMember = () => {
             },
             () => {
                 getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                    console.log('url' + downloadURL);
                     setImgURL(downloadURL);
                 });
             }
@@ -86,7 +85,7 @@ export const UpsertMember = () => {
         };
         console.log('1 Render');
         params.id ? getMember() : setLoadingData(false);
-    }, [params.id, uploadedImage, imgURL]);
+    }, [params.id]);
 
     const submitUserData: any = (values: IMember) => {
         const SwalObj = Swal.mixin({
@@ -136,7 +135,6 @@ export const UpsertMember = () => {
                     });
                 }
 
-                console.log('docImg' + member.documentImage);
                 member.documentImage && saveImage(member.documentImage);
                 setLoadingData(false);
             }
@@ -155,7 +153,7 @@ export const UpsertMember = () => {
                 </div>
 
                 {!imgURL && <ProgressBar now={progressPercent} label={`${progressPercent}%`} />}
-                {imgURL && <img src={imgURL} alt='uploaded file' height={200} width={200} />}
+                <div className='form-control'>{progressPercent === 100 && <ImagePreview file={uploadedImage} />}</div>
 
                 <div className='form-group'>
                     <NavigateBtn route={'/'} variant='btn btn-outline-dark btn-lg' text={'Back'} />
