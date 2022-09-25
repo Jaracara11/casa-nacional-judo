@@ -26,7 +26,6 @@ export const Auth = () => {
     });
 
     const submitAuth: any = async (userData: IAuthUser) => {
-        console.log(userData);
         setLoadingData(true);
         try {
             await signIn(userData.email, userData.password);
