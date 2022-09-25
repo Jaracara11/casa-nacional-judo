@@ -28,7 +28,6 @@ export const UpsertMember = () => {
     const [uploadedImage, setUploadedImage] = useState<File>();
     const [imgURL, setImgURL] = useState<string>('');
     const [progressPercent, setProgressPercent] = useState(0);
-    const fileRef = useRef<any>(null);
 
     const initialValues: IMember = {
         firstName: '',
