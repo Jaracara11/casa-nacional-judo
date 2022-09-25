@@ -19,6 +19,8 @@ export const UpsertMember = () => {
     const [loadingData, setLoadingData] = useState(false);
     const [member, setMember] = useState({} as IMember);
     const [uploadedImage, setUploadedImage] = useState<File>();
+    const [imgURL, setImgURL] = useState(null);
+    const [progresspercent, setProgresspercent] = useState(0);
     const fileRef = useRef<any>(null);
 
     const {
@@ -45,6 +47,7 @@ export const UpsertMember = () => {
     const handleFileChange = (event: any) => {
         setUploadedImage(event.target.files![0]);
         member.documentImage = event.target.files![0];
+        console.log(member.documentImage);
     };
 
     useEffect(() => {
@@ -58,10 +61,9 @@ export const UpsertMember = () => {
                 });
             setLoadingData(false);
         };
-
-        member.documentImage = uploadedImage;
+        console.log('1 Render');
         params.id ? getMember() : setLoadingData(false);
-    }, []);
+    }, [params.id, uploadedImage, member]);
 
     const submitUserData: any = (values: IMember) => {
         const SwalObj = Swal.mixin({
@@ -110,6 +112,7 @@ export const UpsertMember = () => {
                         showConfirmButton: false
                     });
                 }
+
                 setLoadingData(false);
             }
         });
@@ -123,22 +126,16 @@ export const UpsertMember = () => {
                 <h1>{params.id ? 'Editar' : 'Agregar'} Miembro</h1>
                 <div className='form-control'>
                     <label htmlFor='documentImage'>Foto de documento:</label>
-                    <input
-                        {...register('documentImage')}
-                        ref={fileRef}
-                        id='documentImage'
-                        type='file'
-                        accept='.jpg, .jpeg, .png'
-                        name='documentImage'
-                        onChange={handleFileChange}
-                    />
+                    <input {...register('documentImage')} type='file' accept='.jpg, .jpeg, .png' name='documentImage' onChange={handleFileChange} />
                     <ErrorView error={errors.documentImage} />
                 </div>
 
-                <div className='form-control'>
-                    <br />
-                    {uploadedImage && <ImagePreview file={uploadedImage} />}
-                </div>
+                {uploadedImage && (
+                    <div className='form-control'>
+                        <br />
+                        <ImagePreview file={uploadedImage} />
+                    </div>
+                )}
 
                 <div className='form-group'>
                     <NavigateBtn route={'/'} variant='btn btn-outline-dark btn-lg' text={'Back'} />

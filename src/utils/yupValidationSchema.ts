@@ -1,5 +1,5 @@
 import * as Yup from 'yup';
-import { SUPPORTED_FORMATS } from './helper';
+import { SUPPORTED_IMAGE_FORMATS } from './constants';
 
 const signInValidation = Yup.object({
     email: Yup.string().email().required('Campo obligatorio.'),
@@ -35,7 +35,10 @@ const memberValidation = Yup.object({
     documentImage: Yup.mixed()
         .nullable()
         .notRequired()
-        .test('Formato invalido, favor subir imagen en .JPEG, .JPG o .PNG.', (value) => !value || (value && SUPPORTED_FORMATS.includes(value.type)))
+        .test(
+            'Formato invalido, favor subir imagen en .JPEG, .JPG o .PNG.',
+            (value) => !value || (value && SUPPORTED_IMAGE_FORMATS.includes(value.type))
+        )
         .test('Tamaño de archivo, la imagen no debe exceder de 2MB', (value) => {
             return value && value[0].size < 100;
         })
