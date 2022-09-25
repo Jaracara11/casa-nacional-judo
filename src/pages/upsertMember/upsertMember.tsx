@@ -113,14 +113,14 @@ export const UpsertMember = () => {
                     if (params.id) {
                         updateMember(values);
                         SwalObj.fire({
-                            html: `Miembro Actualizado!`,
+                            html: `<strong>Miembro Actualizado!</strong>`,
                             icon: 'info',
                             showConfirmButton: false
                         });
                     } else {
                         createMember(values);
                         SwalObj.fire({
-                            html: `Nuevo miembro Agregado!`,
+                            html: `<strong>Nuevo miembro Agregado!</strong>`,
                             icon: 'success',
                             showConfirmButton: false
                         }).then(() => {
