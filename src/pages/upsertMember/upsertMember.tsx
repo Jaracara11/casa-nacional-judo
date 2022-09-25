@@ -67,7 +67,6 @@ export const UpsertMember = () => {
         setImgURL('');
         setUploadedImage(event.target.files![0]);
         member.documentImage = event.target.files![0];
-        console.log(member.documentImage);
         saveImage(member.documentImage!);
     };
 
