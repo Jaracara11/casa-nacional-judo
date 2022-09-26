@@ -8,8 +8,6 @@ const imageRef = (fileName: string) => {
 
 const uploadImage = async (image: File, userId: string) => {
     await uploadBytes(imageRef(userId), image);
-
-    return console.log('Image Uploaded!');
 };
 
 export { uploadImage };

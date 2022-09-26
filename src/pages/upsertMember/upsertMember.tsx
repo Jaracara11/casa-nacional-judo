@@ -13,22 +13,13 @@ import { ErrorView } from '../../components/errorView/errorView';
 import { NavigateBtn } from '../../components/buttons/navigateButton/navigateBtn';
 import { ImagePreview } from '../../components/imagePreview/imagePreview';
 import { Button } from 'react-bootstrap';
-import ProgressBar from 'react-bootstrap/ProgressBar';
-
-////////////////////////////////////////////////////////////////////////////////
-import { storage } from '../../utils/firebase';
-import { ref, getDownloadURL, uploadBytesResumable, StorageReference, UploadTask } from 'firebase/storage';
 
 export const UpsertMember = () => {
-    ////////////////////////////////////////////////////////////////////////////////
-
     const navigate = useNavigate();
     const params = useParams();
     const [loadingData, setLoadingData] = useState(false);
     const [member, setMember] = useState({} as IMember);
     const [documentImage, setDocumentImage] = useState<File>();
-    const [imgURL, setImgURL] = useState<string>('');
-    const [progressPercent, setProgressPercent] = useState(0);
 
     const initialValues: IMember = {
         firstName: '',
@@ -131,9 +122,7 @@ export const UpsertMember = () => {
                     />
                 </div>
 
-                {!imgURL && <ProgressBar now={progressPercent} label={`${progressPercent}%`} />}
-
-                {documentImage && <div className='form-control'>{progressPercent === 100 && <ImagePreview file={documentImage} />}</div>}
+                {documentImage && <ImagePreview file={documentImage} />}
 
                 <div className='form-group'>
                     <NavigateBtn route={'/'} variant='btn btn-outline-dark btn-lg' text={'Back'} />
