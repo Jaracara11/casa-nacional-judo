@@ -3,7 +3,7 @@ import { ref, uploadBytes } from 'firebase/storage';
 import { MEMBERS_PHOTOS_FOLDER } from '../utils/constants';
 
 const imageRef = (fileName: string) => {
-    return ref(storage, `${MEMBERS_PHOTOS_FOLDER}/${fileName}`);
+    return ref(storage, MEMBERS_PHOTOS_FOLDER + fileName);
 };
 
 const uploadImage = async (image: File, userId: string) => {
