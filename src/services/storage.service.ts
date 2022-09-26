@@ -1,16 +1,15 @@
 import { storage } from '../utils/firebase';
-import { ref, getDownloadURL, uploadBytesResumable } from 'firebase/storage';
+import { ref, uploadBytes } from 'firebase/storage';
 import { MEMBERS_PHOTOS_FOLDER } from '../utils/constants';
 
-const saveImage = (file: File) => {
-    const storageRef = ref(storage, MEMBERS_PHOTOS_FOLDER + file.name);
-    const uploadTask = uploadBytesResumable(storageRef, file);
-
-    uploadTask.on('state_changed', () => {
-        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            return downloadURL;
-        });
-    });
+const imageRef = (fileName: string) => {
+    return ref(storage, `${MEMBERS_PHOTOS_FOLDER}/${fileName}`);
 };
 
-export { saveImage };
+const uploadImage = async (image: File, userId: string) => {
+    await uploadBytes(imageRef(userId), image);
+
+    return console.log('Image Uploaded!');
+};
+
+export { uploadImage };

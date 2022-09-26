@@ -1,11 +1,12 @@
 import './upsertmember.css';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { IMember } from '../../interfaces/IMember';
 import { getMemberById, updateMember, createMember } from '../../services/members.service';
+import { uploadImage } from '../../services/storage.service';
 import { memberValidation } from '../../utils/yupValidationSchema';
 import { Spinner } from '../../components/spinner/spinner';
 import { ErrorView } from '../../components/errorView/errorView';
@@ -25,7 +26,7 @@ export const UpsertMember = () => {
     const params = useParams();
     const [loadingData, setLoadingData] = useState(false);
     const [member, setMember] = useState({} as IMember);
-    const [uploadedImage, setUploadedImage] = useState<File>();
+    const [documentImage, setDocumentImage] = useState<File>();
     const [imgURL, setImgURL] = useState<string>('');
     const [progressPercent, setProgressPercent] = useState(0);
 
@@ -42,34 +43,6 @@ export const UpsertMember = () => {
         totalAmountDue: 0
     };
 
-    const saveImage = (file: File) => {
-        const storageRef = ref(storage, `members-photos/${file.name}`);
-        const uploadTask = uploadBytesResumable(storageRef, file);
-
-        uploadTask.on(
-            'state_changed',
-            (snapshot) => {
-                const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
-                setProgressPercent(progress);
-            },
-            (err) => {
-                console.log(err);
-            },
-            () => {
-                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                    setImgURL(downloadURL);
-                });
-            }
-        );
-    };
-
-    const handleFileChange = (event: any) => {
-        setImgURL('');
-        setUploadedImage(event.target.files![0]);
-        member.documentImage = event.target.files![0];
-        saveImage(member.documentImage!);
-    };
-
     useEffect(() => {
         const getMember = async () => {
             await getMemberById(params.id!)
@@ -82,8 +55,9 @@ export const UpsertMember = () => {
             setLoadingData(false);
         };
         console.log('1 Render');
+        console.log(documentImage);
         params.id ? getMember() : setLoadingData(false);
-    }, [params.id]);
+    }, [params.id, documentImage]);
 
     const submitUserData: any = (values: IMember) => {
         const SwalObj = Swal.mixin({
@@ -133,7 +107,7 @@ export const UpsertMember = () => {
                     });
                 }
 
-                member.documentImage && saveImage(member.documentImage);
+                uploadImage(documentImage!, 'imagen de prueba');
                 setLoadingData(false);
             }
         });
@@ -147,11 +121,19 @@ export const UpsertMember = () => {
                 <h1>{params.id ? 'Editar' : 'Agregar'} Miembro</h1>
                 <div className='form-control'>
                     <label htmlFor='documentImage'>Foto de documento:</label>
-                    <input type='file' accept='.jpg, .jpeg, .png' name='documentImage' onChange={handleFileChange} />
+                    <input
+                        type='file'
+                        accept='.jpg, .jpeg, .png'
+                        name='documentImage'
+                        onChange={(e: any) => {
+                            setDocumentImage(e.target.files[0]);
+                        }}
+                    />
                 </div>
 
                 {!imgURL && <ProgressBar now={progressPercent} label={`${progressPercent}%`} />}
-                <div className='form-control'>{progressPercent === 100 && <ImagePreview file={uploadedImage} />}</div>
+
+                {documentImage && <div className='form-control'>{progressPercent === 100 && <ImagePreview file={documentImage} />}</div>}
 
                 <div className='form-group'>
                     <NavigateBtn route={'/'} variant='btn btn-outline-dark btn-lg' text={'Back'} />
