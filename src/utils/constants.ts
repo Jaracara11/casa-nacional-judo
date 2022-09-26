@@ -2,7 +2,7 @@ import { IGenericObject } from '../interfaces/IGenericObject';
 
 const MEMBERS_COLLECTION = 'members';
 
-const MEMBERS_PHOTOS_FOLDER = 'member-photos/';
+const MEMBER_PHOTOS_FOLDER = 'member-photos/';
 
 const SUPPORTED_IMAGE_FORMATS: string[] = ['image/jpeg', 'image/jpg', 'image/png'];
 
@@ -16,4 +16,4 @@ const BELT_LIST: IGenericObject[] = [
     { key: 'Black', value: 'Negro' }
 ];
 
-export { SUPPORTED_IMAGE_FORMATS, BELT_LIST, MEMBERS_COLLECTION, MEMBERS_PHOTOS_FOLDER };
+export { SUPPORTED_IMAGE_FORMATS, BELT_LIST, MEMBERS_COLLECTION, MEMBER_PHOTOS_FOLDER };
