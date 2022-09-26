@@ -17,7 +17,7 @@ import { Button } from 'react-bootstrap';
 export const UpsertMember = () => {
     const navigate = useNavigate();
     const params = useParams();
-    const [loadingData, setLoadingData] = useState(false);
+    const [loadingData, setLoadingData] = useState(true);
     const [member, setMember] = useState({} as IMember);
     const [documentImage, setDocumentImage] = useState<File>();
 
@@ -36,6 +36,7 @@ export const UpsertMember = () => {
 
     useEffect(() => {
         const getMember = async () => {
+            setLoadingData(true);
             await getMemberById(params.id!)
                 .then((response) => {
                     setMember(response);
