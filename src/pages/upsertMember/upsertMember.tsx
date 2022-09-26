@@ -21,6 +21,14 @@ export const UpsertMember = () => {
     const [member, setMember] = useState({} as IMember);
     const [documentImage, setDocumentImage] = useState<File>();
 
+    const {
+        register,
+        handleSubmit,
+        formState: { errors }
+    } = useForm({
+        resolver: yupResolver(memberValidation)
+    });
+
     const initialValues: IMember = {
         firstName: '',
         lastName: '',
@@ -46,8 +54,7 @@ export const UpsertMember = () => {
                 });
             setLoadingData(false);
         };
-        console.log('1 Render');
-        console.log(documentImage);
+
         params.id ? getMember() : setLoadingData(false);
     }, [params.id, documentImage]);
 
@@ -109,9 +116,15 @@ export const UpsertMember = () => {
         <Spinner />
     ) : (
         <div className='upsert-container'>
-            <form className='form-control'>
+            <form className='form-control' onSubmit={handleSubmit(submitUserData)}>
                 <h1>{params.id ? 'Editar' : 'Agregar'} Miembro</h1>
                 <div className='form-control'>
+                    <input className='form-control mt-1' {...register('firstName')} type='text' placeholder='Nombres...' name='firstName' />
+                    <ErrorView error={errors.firstName} />
+                    <input className='form-control mt-1' {...register('lastName')} type='text' placeholder='Apellidos...' name='lastName' />
+                    <ErrorView error={errors.lastName} />
+                    <input className='form-control mt-1' {...register('lastName')} type='date' placeholder='Apellidos...' name='lastName' />
+                    <ErrorView error={errors.lastName} />
                     <label htmlFor='documentImage'>Foto de documento:</label>
                     <input
                         type='file'
@@ -127,7 +140,7 @@ export const UpsertMember = () => {
 
                 <div className='form-group'>
                     <NavigateBtn route={'/'} variant='btn btn-outline-dark btn-lg' text={'Back'} />
-                    <Button variant='btn btn-primary btn-lg btn-block' onClick={submitUserData}>
+                    <Button variant='btn btn-primary btn-lg btn-block' type='submit'>
                         Save
                     </Button>
                 </div>
