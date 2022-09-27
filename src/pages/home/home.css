@@ -1,0 +1,10 @@
+.home-container {
+    display: grid;
+    grid-template-rows: 5% 95%;
+    grid-template-columns: 1fr;
+    overflow: auto;
+}
+
+.btn-panel .btn-primary{
+    margin: 10px;
+}
