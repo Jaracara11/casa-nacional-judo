@@ -1,0 +1,14 @@
+.input-date input {
+    max-width: 150px;
+    color: #6c757d;
+}
+
+.upsert-container select {
+    max-width: 150px;
+    color: #6c757d;
+}
+
+.upsert-container .btn-primary {
+    float: right;
+    min-width: 150px;
+}

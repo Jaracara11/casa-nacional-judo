@@ -9,7 +9,7 @@ export interface IMember {
   phone1: string;
   phone2?: string;
   email?: string;
-  belt: string;
+  belt?: string;
   signUpDate: string;
   monthlyFee: number;
   anualFee: number;

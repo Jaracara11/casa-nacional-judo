@@ -1,3 +1,4 @@
+import './imagePreview.css';
 import { useState } from 'react';
 import { Spinner } from '../spinner/spinner';
 
@@ -11,9 +12,9 @@ export const ImagePreview = ({ file }: any) => {
     };
 
     return preview ? (
-        <>
-            <img src={preview?.toString()} alt='Preview' width='200px' height='200px' />
-        </>
+        <div className='img-preview mt-1'>
+            <img src={preview?.toString()} alt='Preview' />
+        </div>
     ) : (
         <Spinner />
     );
