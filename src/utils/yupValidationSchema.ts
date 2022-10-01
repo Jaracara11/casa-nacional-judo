@@ -38,7 +38,7 @@ const memberValidation = Yup.object({
             file.length > 0 && file[0].size > 2000000 ? (result = false) : (result = true);
             return result;
         })
-        .test('fileType', 'Favor subir imagen en formato .JPEG, .JPG o .PNG.', (file): any => {
+        .test('fileType', 'Favor subir una imagen en formato .JPEG, .JPG o .PNG.', (file): any => {
             let result: boolean;
             file.length > 0 && !SUPPORTED_IMAGE_FORMATS.includes(file[0].type) ? (result = false) : (result = true);
             return result;
