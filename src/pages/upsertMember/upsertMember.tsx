@@ -31,21 +31,6 @@ export const UpsertMember = () => {
         resolver: yupResolver(memberValidation)
     });
 
-    const currentDate = new Date();
-
-    const initialValues: IMember = {
-        firstName: '',
-        lastName: '',
-        birthDate: '',
-        address: '',
-        phone1: '',
-        belt: '',
-        signUpDate: getCurrentDate(),
-        monthlyFee: 0,
-        anualFee: 0,
-        totalAmountDue: 0
-    };
-
     useEffect(() => {
         const getMember = async () => {
             setLoadingData(true);
@@ -184,7 +169,7 @@ export const UpsertMember = () => {
                         <label className='text-muted' htmlFor='phone1'>
                             Teléfono 2:
                         </label>
-                        <input className='form-control' {...register('phone1')} type='text' name='phone2' />
+                        <input className='form-control' {...register('phone2')} type='text' name='phone2' />
                         <ErrorView error={errors.phone2} />
                     </div>
 
