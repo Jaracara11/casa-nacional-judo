@@ -1,6 +1,6 @@
 .home-container {
     display: grid;
-    grid-template-rows: 5% 95%;
+    grid-template-rows: auto 1fr;
     grid-template-columns: 1fr;
     overflow: auto;
 }
