@@ -27,7 +27,7 @@ export const MembersTable = () => {
     return loadingData ? (
         <Spinner />
     ) : (
-        <Table striped bordered hover>
+        <Table responsive hover>
             <thead>
                 <tr>
                     <th>Nombre</th>
