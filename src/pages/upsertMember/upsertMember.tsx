@@ -226,8 +226,10 @@ export const UpsertMember = () => {
                             className='form-control'
                             type='file'
                             accept='.jpg, .jpeg, .png'
+                            {...register('documentImage')}
                             name='documentImage'
                             onChange={(e: any) => {
+                                console.log(e);
                                 setDocumentImage(e.target.files[0]);
                             }}
                         />

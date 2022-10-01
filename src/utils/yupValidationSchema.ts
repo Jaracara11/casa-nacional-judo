@@ -31,12 +31,13 @@ const memberValidation = Yup.object({
     anualFee: Yup.number().positive('Anualidad debe ser mayor a Cero.').required('Campo requerido.'),
     totalAmountDue: Yup.number(),
     documentImage: Yup.mixed()
+        .required()
         .test(
             'Formato invalido, favor subir imagen en .JPEG, .JPG o .PNG.',
             (value) => !value || (value && SUPPORTED_IMAGE_FORMATS.includes(value.type))
         )
         .test('Tamaño de archivo, la imagen no debe exceder de 2MB', (value) => {
-            return value && value[0].size < 100;
+            return value && value[0].size < 1;
         })
 });
 
