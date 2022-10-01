@@ -109,44 +109,110 @@ export const UpsertMember = () => {
             <form className='form-control' onSubmit={handleSubmit(submitUserData)}>
                 <h1>{params.id ? 'Editar' : 'Agregar'} Miembro</h1>
                 <div className='form-control'>
-                    <div className='form-control mt-3'>
-                        <label className='text-muted' htmlFor='firstName'>
-                            Nombres:
-                        </label>
-                        <input className='form-control' {...register('firstName')} type='text' name='firstName' minLength={3} maxLength={20} />
-                        <ErrorView error={errors.firstName} />
+                    <div className='row'>
+                        <div className='col'>
+                            <label className='text-muted' htmlFor='firstName'>
+                                Nombres:
+                            </label>
+                            <input className='form-control' {...register('firstName')} type='text' name='firstName' minLength={3} maxLength={20} />
+                            <ErrorView error={errors.firstName} />
+                        </div>
+                        <div className='col'>
+                            <label className='text-muted' htmlFor='lastName'>
+                                Apellidos:
+                            </label>
+                            <input className='form-control' {...register('lastName')} type='text' name='lastName' minLength={3} maxLength={25} />
+                            <ErrorView error={errors.lastName} />
+                        </div>
                     </div>
 
-                    <div className='form-control mt-3'>
-                        <label className='text-muted' htmlFor='lastName'>
-                            Apellidos:
-                        </label>
-                        <input className='form-control' {...register('lastName')} type='text' name='lastName' minLength={3} maxLength={25} />
-                        <ErrorView error={errors.lastName} />
+                    <div className='row'>
+                        <div className='col'>
+                            <div className='form-control mt-3 input-date'>
+                                <label className='text-muted' htmlFor='birthDate'>
+                                    Fecha de nacimiento:
+                                </label>
+                                <input className='form-control' {...register('birthDate')} type='date' name='birthDate' />
+                                <ErrorView error={errors.birthDate} />
+                            </div>
+                        </div>
+                        <div className='col'>
+                            <label className='text-muted' htmlFor='bloodType'>
+                                Tipo de sangre:
+                            </label>
+                            <input className='form-control' {...register('bloodType')} type='text' name='bloodType' maxLength={2} />
+                            <ErrorView error={errors.bloodType} />
+                        </div>
+                        <div className='col'>
+                            <label className='text-muted' htmlFor='identification'>
+                                Cédula:
+                            </label>
+                            <input className='form-control' {...register('identification')} type='text' name='identification' maxLength={11} />
+                            <ErrorView error={errors.identification} />
+                        </div>
                     </div>
 
-                    <div className='form-control mt-3 input-date'>
-                        <label className='text-muted' htmlFor='birthDate'>
-                            Fecha de nacimiento:
-                        </label>
-                        <input className='form-control' {...register('birthDate')} type='date' name='birthDate' />
-                        <ErrorView error={errors.birthDate} />
+                    <div className='row'>
+                        <div className='col'>
+                            <label className='text-muted' htmlFor='phone1'>
+                                Teléfono 1:
+                            </label>
+                            <input className='form-control' {...register('phone1')} type='text' name='phone1' minLength={10} maxLength={10} />
+                            <ErrorView error={errors.phone1} />
+                        </div>
+                        <div className='col'>
+                            <label className='text-muted' htmlFor='phone2'>
+                                Teléfono 2:
+                            </label>
+                            <input className='form-control' {...register('phone2')} type='text' name='phone2' minLength={10} maxLength={10} />
+                            <ErrorView error={errors.phone2} />
+                        </div>
+                        <div className='col'>
+                            <label className='text-muted' htmlFor='email'>
+                                Email:
+                            </label>
+                            <input className='form-control' {...register('email')} type='email' name='email' />
+                            <ErrorView error={errors.email} />
+                        </div>
                     </div>
 
-                    <div className='form-control mt-3'>
-                        <label className='text-muted' htmlFor='bloodType'>
-                            Tipo de sangre:
-                        </label>
-                        <input className='form-control' {...register('bloodType')} type='text' name='bloodType' maxLength={2} />
-                        <ErrorView error={errors.bloodType} />
+                    <div className='row'>
+                        <div className='col'>
+                            <label className='text-muted' htmlFor='email'>
+                                Cinturón:
+                            </label>
+                            <select className='form-select'>
+                                {BELT_LIST.map((belt) => (
+                                    <option key={belt.key} value={belt.key}>
+                                        {belt.value}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                        <div className='col'>
+                            <label className='text-muted' htmlFor='birthDate'>
+                                Fecha de inscripción:
+                            </label>
+                            <input className='form-control' {...register('signUpDate')} type='date' name='signUpDate' />
+                            <ErrorView error={errors.signUpDate} />
+                        </div>
                     </div>
 
-                    <div className='form-control mt-3'>
-                        <label className='text-muted' htmlFor='identification'>
-                            Cédula:
-                        </label>
-                        <input className='form-control' {...register('identification')} type='text' name='identification' maxLength={11} />
-                        <ErrorView error={errors.identification} />
+                    <div className='row'>
+                        <div className='col'>
+                            <label className='text-muted' htmlFor='monthlyFee'>
+                                Mensualidad:
+                            </label>
+                            <input className='form-control' {...register('monthlyFee')} type='number' name='monthlyFee' defaultValue={0} />
+                            <ErrorView error={errors.monthlyFee} />
+                        </div>
+                        <div className='col'>
+                            <label className='text-muted' htmlFor='anualFee'>
+                                Anualidad:
+                            </label>
+                            <input className='form-control' {...register('anualFee')} type='number' name='anualFee' defaultValue={0} />
+                            <ErrorView error={errors.anualFee} />
+                        </div>
                     </div>
 
                     <div className='form-control mt-3'>
@@ -157,83 +223,24 @@ export const UpsertMember = () => {
                         <ErrorView error={errors.address} />
                     </div>
 
-                    <div className='form-control mt-3'>
-                        <label className='text-muted' htmlFor='phone1'>
-                            Teléfono 1:
-                        </label>
-                        <input className='form-control' {...register('phone1')} type='text' name='phone1' minLength={10} maxLength={10} />
-                        <ErrorView error={errors.phone1} />
-                    </div>
-
-                    <div className='form-control mt-3'>
-                        <label className='text-muted' htmlFor='phone2'>
-                            Teléfono 2:
-                        </label>
-                        <input className='form-control' {...register('phone2')} type='text' name='phone2' minLength={10} maxLength={10} />
-                        <ErrorView error={errors.phone2} />
-                    </div>
-
-                    <div className='form-control mt-3'>
-                        <label className='text-muted' htmlFor='email'>
-                            Email:
-                        </label>
-                        <input className='form-control' {...register('email')} type='email' name='email' />
-                        <ErrorView error={errors.email} />
-                    </div>
-
-                    <div className='form-control mt-3'>
-                        <label className='text-muted' htmlFor='email'>
-                            Cinturón:
-                        </label>
-                        <select className='form-select'>
-                            {BELT_LIST.map((belt) => (
-                                <option key={belt.key} value={belt.key}>
-                                    {belt.value}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
-
-                    <div className='form-control mt-3 input-date'>
-                        <label className='text-muted' htmlFor='birthDate'>
-                            Fecha de inscripción:
-                        </label>
-                        <input className='form-control' {...register('signUpDate')} type='date' name='signUpDate' />
-                        <ErrorView error={errors.signUpDate} />
-                    </div>
-
-                    <div className='form-control mt-3'>
-                        <label className='text-muted' htmlFor='monthlyFee'>
-                            Mensualidad:
-                        </label>
-                        <input className='form-control' {...register('monthlyFee')} type='number' name='monthlyFee' defaultValue={0} />
-                        <ErrorView error={errors.monthlyFee} />
-                    </div>
-
-                    <div className='form-control mt-3'>
-                        <label className='text-muted' htmlFor='anualFee'>
-                            Anualidad:
-                        </label>
-                        <input className='form-control' {...register('anualFee')} type='number' name='anualFee' defaultValue={0} />
-                        <ErrorView error={errors.anualFee} />
-                    </div>
-
-                    <div className='form-control mt-3'>
-                        <label className='text-muted' htmlFor='documentImage'>
-                            Foto de documento:
-                        </label>
-                        <input
-                            className='form-control'
-                            type='file'
-                            accept='.jpg, .jpeg, .png'
-                            {...register('documentImage')}
-                            name='documentImage'
-                            onChange={(e: any) => {
-                                setDocumentImage(e.target.files[0]);
-                            }}
-                        />
-                        <ErrorView error={errors.documentImage} />
-                        {documentImage && <ImagePreview file={documentImage} />}
+                    <div className='row'>
+                        <div className='col'>
+                            <label className='text-muted' htmlFor='documentImage'>
+                                Foto de documento:
+                            </label>
+                            <input
+                                className='form-control'
+                                type='file'
+                                accept='.jpg, .jpeg, .png'
+                                {...register('documentImage')}
+                                name='documentImage'
+                                onChange={(e: any) => {
+                                    setDocumentImage(e.target.files[0]);
+                                }}
+                            />
+                            <ErrorView error={errors.documentImage} />
+                            {documentImage && <ImagePreview file={documentImage} />}
+                        </div>
                     </div>
                 </div>
 

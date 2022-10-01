@@ -3,6 +3,12 @@
     color: #6c757d;
 }
 
+.upsert-container {
+    max-width: 700px;
+    margin: 1rem auto 1rem;
+    
+}
+
 .upsert-container select {
     max-width: 150px;
     color: #6c757d;
