@@ -19,7 +19,7 @@ const memberValidation = Yup.object({
         .min(3, 'Apellido no puede tener menos de 3 caracteres.')
         .required('Campo requerido.'),
     birthDate: Yup.string().required('Campo requerido.'),
-    bloodType: Yup.string(),
+    bloodType: Yup.string().max(2, 'Tipo de sangre no puede exceder de 2 caracteres.'),
     identification: Yup.string().max(11, 'Número de identificación no puede exceder de 11 caracteres.'),
     address: Yup.string().max(60, 'Dirección no puede exceder de 60 caracteres.').required('Campo requerido.'),
     phone1: Yup.string().required('Campo requerido.').length(10, 'Número de teléfono debe tener 10 caracteres.'),
