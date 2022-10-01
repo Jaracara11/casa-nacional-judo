@@ -1,7 +1,7 @@
 import './upsertmember.css';
+import Swal from 'sweetalert2';
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import Swal from 'sweetalert2';
 import { BELT_LIST } from '../../utils/constants';
 import { getCurrentDate } from '../../utils/helper';
 import { useForm } from 'react-hook-form';
@@ -113,7 +113,7 @@ export const UpsertMember = () => {
                         <label className='text-muted' htmlFor='firstName'>
                             Nombres:
                         </label>
-                        <input className='form-control' {...register('firstName')} type='text' name='firstName' />
+                        <input className='form-control' {...register('firstName')} type='text' name='firstName' minLength={3} maxLength={20} />
                         <ErrorView error={errors.firstName} />
                     </div>
 
@@ -121,7 +121,7 @@ export const UpsertMember = () => {
                         <label className='text-muted' htmlFor='lastName'>
                             Apellidos:
                         </label>
-                        <input className='form-control' {...register('lastName')} type='text' name='lastName' />
+                        <input className='form-control' {...register('lastName')} type='text' name='lastName' minLength={3} maxLength={25} />
                         <ErrorView error={errors.lastName} />
                     </div>
 
@@ -137,7 +137,7 @@ export const UpsertMember = () => {
                         <label className='text-muted' htmlFor='bloodType'>
                             Tipo de sangre:
                         </label>
-                        <input className='form-control' {...register('bloodType')} type='text' name='bloodType' />
+                        <input className='form-control' {...register('bloodType')} type='text' name='bloodType' maxLength={2} />
                         <ErrorView error={errors.bloodType} />
                     </div>
 
@@ -145,7 +145,7 @@ export const UpsertMember = () => {
                         <label className='text-muted' htmlFor='identification'>
                             Cédula:
                         </label>
-                        <input className='form-control' {...register('identification')} type='text' name='identification' />
+                        <input className='form-control' {...register('identification')} type='text' name='identification' maxLength={11} />
                         <ErrorView error={errors.identification} />
                     </div>
 
@@ -153,7 +153,7 @@ export const UpsertMember = () => {
                         <label className='text-muted' htmlFor='address'>
                             Dirección:
                         </label>
-                        <textarea className='form-control' {...register('address')} name='address' />
+                        <textarea className='form-control' {...register('address')} name='address' maxLength={60} />
                         <ErrorView error={errors.address} />
                     </div>
 
@@ -161,15 +161,15 @@ export const UpsertMember = () => {
                         <label className='text-muted' htmlFor='phone1'>
                             Teléfono 1:
                         </label>
-                        <input className='form-control' {...register('phone1')} type='text' name='phone1' />
+                        <input className='form-control' {...register('phone1')} type='text' name='phone1' minLength={10} maxLength={10} />
                         <ErrorView error={errors.phone1} />
                     </div>
 
                     <div className='form-control mt-3'>
-                        <label className='text-muted' htmlFor='phone1'>
+                        <label className='text-muted' htmlFor='phone2'>
                             Teléfono 2:
                         </label>
-                        <input className='form-control' {...register('phone2')} type='text' name='phone2' />
+                        <input className='form-control' {...register('phone2')} type='text' name='phone2' minLength={10} maxLength={10} />
                         <ErrorView error={errors.phone2} />
                     </div>
 

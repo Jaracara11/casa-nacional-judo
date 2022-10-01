@@ -11,19 +11,19 @@ const signInValidation = Yup.object({
 
 const memberValidation = Yup.object({
     firstName: Yup.string()
-        .max(20, 'Nombre no puede exceder de 20 caracteres.')
+        .required('Campo requerido.')
         .min(3, 'Nombre no puede tener menos de 3 caracteres.')
-        .required('Campo requerido.'),
+        .max(20, 'Nombre no puede exceder de 20 caracteres.'),
     lastName: Yup.string()
-        .max(25, 'Apellido no puede exceder de 25 caracteres.')
+        .required('Campo requerido.')
         .min(3, 'Apellido no puede tener menos de 3 caracteres.')
-        .required('Campo requerido.'),
+        .max(25, 'Apellido no puede exceder de 25 caracteres.'),
     birthDate: Yup.string().required('Campo requerido.'),
     bloodType: Yup.string().max(2, 'Tipo de sangre no puede exceder de 2 caracteres.'),
     identification: Yup.string().max(11, 'Número de identificación no puede exceder de 11 caracteres.'),
     address: Yup.string().max(60, 'Dirección no puede exceder de 60 caracteres.').required('Campo requerido.'),
     phone1: Yup.string().required('Campo requerido.').length(10, 'Número de teléfono debe tener 10 caracteres.'),
-    phone2: Yup.string().length(10, 'Número de teléfono debe tener 10 caracteres.'),
+    phone2: Yup.string(),
     email: Yup.string().email(),
     belt: Yup.string(),
     signUpDate: Yup.string(),
