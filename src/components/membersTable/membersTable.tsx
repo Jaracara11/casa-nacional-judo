@@ -27,7 +27,7 @@ export const MembersTable = () => {
     return loadingData ? (
         <Spinner />
     ) : (
-        <Table responsive hover>
+        <Table className='members-table' responsive hover>
             <thead>
                 <tr>
                     <th>Nombre</th>

@@ -1,0 +1,34 @@
+@media (max-width: 700px) {
+    .members-table thead th:nth-child(2),
+    .members-table tbody td:nth-child(2) {
+        display: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .members-table thead th:nth-child(3),
+    .members-table tbody td:nth-child(3) {
+        display: none;
+    }
+}
+
+@media (max-width: 400px) {
+    .members-table thead th:nth-child(5),
+    .members-table tbody td:nth-child(5) {
+        display: none;
+    }
+}
+
+@media (max-width: 350px) {
+    .members-table thead th:nth-child(4),
+    .members-table tbody td:nth-child(4) {
+        display: none;
+    }
+}
+
+@media (max-width: 300px) {
+    .members-table thead th:nth-child(6),
+    .members-table tbody td:nth-child(6) {
+        display: none;
+    }
+}
