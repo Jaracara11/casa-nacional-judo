@@ -1,3 +1,4 @@
+import { valueToPercent } from '@mui/base';
 import * as Yup from 'yup';
 import { SUPPORTED_IMAGE_FORMATS } from './constants';
 
@@ -31,12 +32,22 @@ const memberValidation = Yup.object({
     anualFee: Yup.number().positive('Anualidad debe ser mayor a Cero.').required('Campo requerido.'),
     totalAmountDue: Yup.number(),
     documentImage: Yup.mixed()
-        .required()
-        .test('fileSize', 'El tamaño de la imagen no debe exceder los 2MB.', (value): any => {
-            return value && value[0].size < 2000000;
+
+        .test('fileSize', 'El tamaño de la imagen no debe exceder los 2MB.', (file): any => {
+            //if (file.length === 0) return true;
+            if (file.length > 0 && file[0].size > 2000000) {
+                return false;
+            } else {
+                return true;
+            }
         })
-        .test('fileType', 'Favor subir imagen en formato .JPEG, .JPG o .PNG.', (value): any => {
-            return value && SUPPORTED_IMAGE_FORMATS.includes(value[0].type);
+        .test('fileType', 'Favor subir imagen en formato .JPEG, .JPG o .PNG.', (file): any => {
+            //if (file.length === 0) return true;
+            if (file.length > 0 && !SUPPORTED_IMAGE_FORMATS.includes(file[0].type)) {
+                return false;
+            } else {
+                return true;
+            }
         })
 });
 
