@@ -229,7 +229,6 @@ export const UpsertMember = () => {
                             {...register('documentImage')}
                             name='documentImage'
                             onChange={(e: any) => {
-                                console.log(e);
                                 setDocumentImage(e.target.files[0]);
                             }}
                         />
