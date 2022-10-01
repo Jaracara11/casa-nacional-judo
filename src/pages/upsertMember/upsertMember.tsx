@@ -206,7 +206,7 @@ export const UpsertMember = () => {
                         <label className='text-muted' htmlFor='monthlyFee'>
                             Mensualidad:
                         </label>
-                        <input className='form-control' {...register('monthlyFee')} type='number' name='monthlyFee' />
+                        <input className='form-control' {...register('monthlyFee')} type='number' name='monthlyFee' defaultValue={0} />
                         <ErrorView error={errors.monthlyFee} />
                     </div>
 
@@ -214,7 +214,7 @@ export const UpsertMember = () => {
                         <label className='text-muted' htmlFor='anualFee'>
                             Anualidad:
                         </label>
-                        <input className='form-control' {...register('anualFee')} type='number' name='anualFee' />
+                        <input className='form-control' {...register('anualFee')} type='number' name='anualFee' defaultValue={0} />
                         <ErrorView error={errors.anualFee} />
                     </div>
 

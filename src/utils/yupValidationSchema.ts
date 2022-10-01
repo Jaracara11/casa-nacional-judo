@@ -27,12 +27,10 @@ const memberValidation = Yup.object({
     email: Yup.string().email(),
     belt: Yup.string(),
     signUpDate: Yup.string(),
-    monthlyFee: Yup.number().positive(),
-    anualFee: Yup.number().positive(),
+    monthlyFee: Yup.number().positive('Mensualidad debe ser mayor a Cero.').required('Campo requerido.'),
+    anualFee: Yup.number().positive('Anualidad debe ser mayor a Cero.').required('Campo requerido.'),
     totalAmountDue: Yup.number(),
     documentImage: Yup.mixed()
-        .nullable()
-        .notRequired()
         .test(
             'Formato invalido, favor subir imagen en .JPEG, .JPG o .PNG.',
             (value) => !value || (value && SUPPORTED_IMAGE_FORMATS.includes(value.type))
