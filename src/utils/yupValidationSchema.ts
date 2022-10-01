@@ -34,18 +34,14 @@ const memberValidation = Yup.object({
     documentImage: Yup.mixed()
 
         .test('fileSize', 'El tamaño de la imagen no debe exceder los 2MB.', (file): any => {
-            //if (file.length === 0) return true;
-            if (file.length > 0 && file[0].size > 2000000) {
-                return false;
-            } else {
+            if (file.length > 0 && file[0].size > 2000000) return false;
+            else {
                 return true;
             }
         })
         .test('fileType', 'Favor subir imagen en formato .JPEG, .JPG o .PNG.', (file): any => {
-            //if (file.length === 0) return true;
-            if (file.length > 0 && !SUPPORTED_IMAGE_FORMATS.includes(file[0].type)) {
-                return false;
-            } else {
+            if (file.length > 0 && !SUPPORTED_IMAGE_FORMATS.includes(file[0].type)) return false;
+            else {
                 return true;
             }
         })
