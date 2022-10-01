@@ -232,6 +232,7 @@ export const UpsertMember = () => {
                                 setDocumentImage(e.target.files[0]);
                             }}
                         />
+                        <ErrorView error={errors.documentImage} />
                         {documentImage && <ImagePreview file={documentImage} />}
                     </div>
                 </div>

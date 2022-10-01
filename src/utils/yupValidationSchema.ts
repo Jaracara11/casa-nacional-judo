@@ -32,12 +32,11 @@ const memberValidation = Yup.object({
     totalAmountDue: Yup.number(),
     documentImage: Yup.mixed()
         .required()
-        .test(
-            'Formato invalido, favor subir imagen en .JPEG, .JPG o .PNG.',
-            (value) => !value || (value && SUPPORTED_IMAGE_FORMATS.includes(value.type))
-        )
-        .test('Tamaño de archivo, la imagen no debe exceder de 2MB', (value) => {
-            return value && value[0].size < 1;
+        .test('fileSize', 'El tamaño de la imagen no debe exceder los 2MB.', (value): any => {
+            return value && value[0].size < 2000000;
+        })
+        .test('fileType', 'Favor subir imagen en formato .JPEG, .JPG o .PNG.', (value): any => {
+            return value && SUPPORTED_IMAGE_FORMATS.includes(value[0].type);
         })
 });
 
