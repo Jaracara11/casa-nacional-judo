@@ -43,7 +43,8 @@ export const UpsertMember = () => {
                 });
             setLoadingData(false);
         };
-        params.id ? getMember() : setLoadingData(false);
+        params.id ? getMember() : setLoadingData(false); 
+        console.log(member);
     }, [params.id]);
 
     const submitUserData: any = (values: IMember) => {

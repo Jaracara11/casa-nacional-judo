@@ -8,7 +8,6 @@ const parseNewMemberObject = (data: IMember) => {
     data.lastName = firstCharToUpper(data.lastName);
     data.bloodType && (data.bloodType = firstCharToUpper(data.bloodType));
     data.address = firstCharToUpper(data.address);
-    console.log(data);
 
     return data;
 };
