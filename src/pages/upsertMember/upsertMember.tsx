@@ -26,6 +26,7 @@ export const UpsertMember = () => {
     const {
         register,
         handleSubmit,
+        setValue,
         formState: { errors }
     } = useForm({
         resolver: yupResolver(memberValidation)
@@ -37,13 +38,15 @@ export const UpsertMember = () => {
             await getMemberById(params.id!)
                 .then((response) => {
                     setMember(response);
+                    setValue('firstName', response.firstName);
+                    set
                 })
                 .catch((err) => {
                     console.log(err);
                 });
             setLoadingData(false);
         };
-        params.id ? getMember() : setLoadingData(false); 
+        params.id ? getMember() : setLoadingData(false);
         console.log(member);
     }, [params.id]);
 
