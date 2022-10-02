@@ -40,9 +40,6 @@ export const UpsertMember = () => {
                 .then((response) => {
                     setMember(response);
                     reset(response);
-                    downloadImage(params.id!).then((response) => {
-                        console.log(response);
-                    });
                 })
                 .catch((err) => {
                     console.log(err);
@@ -50,7 +47,7 @@ export const UpsertMember = () => {
             setLoadingData(false);
         };
         params.id ? getMember() : setLoadingData(false);
-    }, [params.id]);
+    }, [params.id, reset]);
 
     const submitUserData: any = (values: IMember) => {
         const SwalObj = Swal.mixin({
