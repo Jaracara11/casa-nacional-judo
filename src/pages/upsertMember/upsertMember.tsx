@@ -106,7 +106,7 @@ export const UpsertMember = () => {
         <Spinner />
     ) : (
         <div className='upsert-container'>
-            <form className='form-control' onSubmit={handleSubmit(submitUserData)}>
+            <form onSubmit={handleSubmit(submitUserData)}>
                 <h1>{params.id ? 'Editar' : 'Agregar'} Miembro</h1>
                 <div className='form-control'>
                     <div className='row'>
@@ -128,27 +128,18 @@ export const UpsertMember = () => {
 
                     <div className='row'>
                         <div className='col'>
-                            <div className='form-control mt-3 input-date'>
-                                <label className='text-muted' htmlFor='birthDate'>
-                                    Fecha de nacimiento:
-                                </label>
-                                <input className='form-control' {...register('birthDate')} type='date' name='birthDate' />
-                                <ErrorView error={errors.birthDate} />
-                            </div>
-                        </div>
-                        <div className='col'>
-                            <label className='text-muted' htmlFor='bloodType'>
-                                Tipo de sangre:
-                            </label>
-                            <input className='form-control' {...register('bloodType')} type='text' name='bloodType' maxLength={2} />
-                            <ErrorView error={errors.bloodType} />
-                        </div>
-                        <div className='col'>
                             <label className='text-muted' htmlFor='identification'>
                                 Cédula:
                             </label>
                             <input className='form-control' {...register('identification')} type='text' name='identification' maxLength={11} />
                             <ErrorView error={errors.identification} />
+                        </div>
+                        <div className='col'>
+                            <label className='text-muted' htmlFor='email'>
+                                Email:
+                            </label>
+                            <input className='form-control' {...register('email')} type='email' name='email' />
+                            <ErrorView error={errors.email} />
                         </div>
                     </div>
 
@@ -167,16 +158,33 @@ export const UpsertMember = () => {
                             <input className='form-control' {...register('phone2')} type='text' name='phone2' minLength={10} maxLength={10} />
                             <ErrorView error={errors.phone2} />
                         </div>
+                    </div>
+
+                    <div className='row'>
                         <div className='col'>
-                            <label className='text-muted' htmlFor='email'>
-                                Email:
+                            <label className='text-muted' htmlFor='birthDate'>
+                                Fecha de nacimiento:
                             </label>
-                            <input className='form-control' {...register('email')} type='email' name='email' />
-                            <ErrorView error={errors.email} />
+                            <input className='form-control' {...register('birthDate')} type='date' name='birthDate' />
+                            <ErrorView error={errors.birthDate} />
+                        </div>
+                        <div className='col'>
+                            <label className='text-muted' htmlFor='bloodType'>
+                                Tipo de sangre:
+                            </label>
+                            <input className='form-control' {...register('bloodType')} type='text' name='bloodType' maxLength={2} />
+                            <ErrorView error={errors.bloodType} />
                         </div>
                     </div>
 
                     <div className='row'>
+                        <div className='col'>
+                            <label className='text-muted' htmlFor='birthDate'>
+                                Fecha de inscripción:
+                            </label>
+                            <input className='form-control' {...register('signUpDate')} type='date' name='signUpDate' />
+                            <ErrorView error={errors.signUpDate} />
+                        </div>
                         <div className='col'>
                             <label className='text-muted' htmlFor='email'>
                                 Cinturón:
@@ -188,13 +196,6 @@ export const UpsertMember = () => {
                                     </option>
                                 ))}
                             </select>
-                        </div>
-                        <div className='col'>
-                            <label className='text-muted' htmlFor='birthDate'>
-                                Fecha de inscripción:
-                            </label>
-                            <input className='form-control' {...register('signUpDate')} type='date' name='signUpDate' />
-                            <ErrorView error={errors.signUpDate} />
                         </div>
                     </div>
 
@@ -215,13 +216,11 @@ export const UpsertMember = () => {
                         </div>
                     </div>
 
-                    <div className='form-control mt-3'>
-                        <label className='text-muted' htmlFor='address'>
-                            Dirección:
-                        </label>
-                        <textarea className='form-control' {...register('address')} name='address' maxLength={60} />
-                        <ErrorView error={errors.address} />
-                    </div>
+                    <label className='text-muted' htmlFor='address'>
+                        Dirección:
+                    </label>
+                    <textarea className='form-control' {...register('address')} name='address' maxLength={60} />
+                    <ErrorView error={errors.address} />
 
                     <div className='row'>
                         <div className='col'>
