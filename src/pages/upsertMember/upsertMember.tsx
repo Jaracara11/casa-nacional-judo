@@ -6,6 +6,7 @@ import { BELT_LIST } from '../../utils/constants';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { IMember } from '../../interfaces/IMember';
+import { firstCharToUpper } from '../../utils/helper';
 import { getMemberById, updateMember, createMember } from '../../services/members.service';
 import { uploadImage } from '../../services/storage.service';
 import { memberValidation } from '../../utils/yupValidationSchema';
@@ -66,18 +67,24 @@ export const UpsertMember = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 setLoadingData(true);
+                values.firstName = firstCharToUpper(values.firstName);
+                values.lastName = firstCharToUpper(values.lastName);
+                values.bloodType && (values.bloodType = firstCharToUpper(values.bloodType));
+                values.address = firstCharToUpper(values.address);
+
+                documentImage ? (values.hasDocumentImage = true) : (values.hasDocumentImage = false);
+                console.log(values);
+
                 try {
                     if (params.id) {
-                        console.log(values);
-                        //updateMember(values);
+                        updateMember(values);
                         SwalObj.fire({
                             html: `<strong>Miembro Actualizado!</strong>`,
                             icon: 'info',
                             showConfirmButton: false
                         });
                     } else {
-                        console.log(values);
-                        //createMember(values);
+                        createMember(values);
                         SwalObj.fire({
                             html: `<strong>Nuevo miembro Agregado!</strong>`,
                             icon: 'success',
