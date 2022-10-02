@@ -40,7 +40,9 @@ export const UpsertMember = () => {
                 .then((response) => {
                     setMember(response);
                     reset(response);
-                    setImageURL(downloadImage(params.id!));
+                    downloadImage(params.id!).then((url) => {
+                        setImageURL(url);
+                    });
                 })
                 .catch((err) => {
                     console.log(err);
@@ -257,6 +259,11 @@ export const UpsertMember = () => {
                             />
                             <ErrorView error={errors.documentImage} />
                             {documentImage && <ImagePreview file={documentImage} />}
+                            {imageURL && (
+                                <div className='img-preview mt-1'>
+                                    <img src={imageURL} alt='Preview' />
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>

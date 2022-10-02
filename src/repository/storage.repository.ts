@@ -17,7 +17,7 @@ const downloadImage = async (fileName: string) => {
         imgURL = url;
     });
 
-    return imgURL
+    return imgURL;
 };
 
 export { uploadImage, downloadImage };
