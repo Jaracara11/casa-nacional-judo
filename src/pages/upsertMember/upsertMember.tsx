@@ -44,7 +44,7 @@ export const UpsertMember = () => {
             setLoadingData(false);
         };
         params.id ? getMember() : setLoadingData(false);
-    }, [params.id, documentImage]);
+    }, [params.id]);
 
     const submitUserData: any = (values: IMember) => {
         const SwalObj = Swal.mixin({
