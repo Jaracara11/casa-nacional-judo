@@ -77,6 +77,8 @@ export const UpsertMember = () => {
                             html: `<strong>Miembro Actualizado!</strong>`,
                             icon: 'info',
                             showConfirmButton: false
+                        }).then(() => {
+                            navigate('/');
                         });
                     } else {
                         createMember(parseNewMemberObject(values)).then((response) => {
