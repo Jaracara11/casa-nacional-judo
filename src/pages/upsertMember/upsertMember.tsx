@@ -71,9 +71,8 @@ export const UpsertMember = () => {
                 setLoadingData(true);
                 try {
                     if (params.id) {
-                        updateMember(parseUpdateMemberObject(values, params.id)).then((response) => {
-                            console.log(response);
-                        });
+                        updateMember(parseUpdateMemberObject(values, params.id));
+                        documentImage && uploadImage(documentImage, params.id);
                         SwalObj.fire({
                             html: `<strong>Miembro Actualizado!</strong>`,
                             icon: 'info',
