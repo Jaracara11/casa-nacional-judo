@@ -1,7 +1,7 @@
 import './membersTable.css';
 import Table from 'react-bootstrap/esm/Table';
 import { useState, useEffect } from 'react';
-import { getAllMembers } from '../../services/members.service';
+import { getAllMembers } from '../../repository/members.repository';
 import { IMember } from '../../interfaces/IMember';
 import { Spinner } from '../spinner/spinner';
 import { NavigateBtn } from '../buttons/navigateButton/navigateBtn';

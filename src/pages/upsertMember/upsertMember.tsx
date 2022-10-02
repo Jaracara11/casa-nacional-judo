@@ -6,15 +6,15 @@ import { BELT_LIST } from '../../utils/constants';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { IMember } from '../../interfaces/IMember';
-import { firstCharToUpper } from '../../utils/helper';
-import { getMemberById, updateMember, createMember } from '../../services/members.service';
-import { uploadImage } from '../../services/storage.service';
+import { getMemberById, updateMember, createMember } from '../../repository/members.repository';
+import { uploadImage } from '../../repository/storage.repository';
 import { memberValidation } from '../../utils/yupValidationSchema';
 import { Spinner } from '../../components/spinner/spinner';
 import { ErrorView } from '../../components/errorView/errorView';
 import { NavigateBtn } from '../../components/buttons/navigateButton/navigateBtn';
 import { ImagePreview } from '../../components/imagePreview/imagePreview';
 import { Button } from 'react-bootstrap';
+import { parseNewMemberObject } from '../../services/parser.service';
 
 export const UpsertMember = () => {
     const navigate = useNavigate();
@@ -67,14 +67,7 @@ export const UpsertMember = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 setLoadingData(true);
-                values.firstName = firstCharToUpper(values.firstName);
-                values.lastName = firstCharToUpper(values.lastName);
-                values.bloodType && (values.bloodType = firstCharToUpper(values.bloodType));
-                values.address = firstCharToUpper(values.address);
-
-                documentImage ? (values.hasDocumentImage = true) : (values.hasDocumentImage = false);
                 console.log(values);
-
                 try {
                     if (params.id) {
                         updateMember(values);
@@ -84,7 +77,7 @@ export const UpsertMember = () => {
                             showConfirmButton: false
                         });
                     } else {
-                        createMember(values);
+                        createMember(parseNewMemberObject(values));
                         SwalObj.fire({
                             html: `<strong>Nuevo miembro Agregado!</strong>`,
                             icon: 'success',
