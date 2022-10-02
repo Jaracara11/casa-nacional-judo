@@ -67,7 +67,6 @@ export const UpsertMember = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 setLoadingData(true);
-                console.log(values);
                 try {
                     if (params.id) {
                         updateMember(values);
@@ -77,13 +76,16 @@ export const UpsertMember = () => {
                             showConfirmButton: false
                         });
                     } else {
-                        createMember(parseNewMemberObject(values));
+                        createMember(parseNewMemberObject(values)).then((response) => {
+                            documentImage && uploadImage(documentImage, response.id);
+                        });
+
                         SwalObj.fire({
                             html: `<strong>Nuevo miembro Agregado!</strong>`,
                             icon: 'success',
                             showConfirmButton: false
                         }).then(() => {
-                            //navigate('/');
+                            navigate('/');
                         });
                     }
                 } catch (err: any) {
@@ -94,8 +96,6 @@ export const UpsertMember = () => {
                         showConfirmButton: false
                     });
                 }
-
-                uploadImage(documentImage!, 'imagen de prueba');
                 setLoadingData(false);
             }
         });
@@ -188,9 +188,9 @@ export const UpsertMember = () => {
                             <label className='text-muted' htmlFor='email'>
                                 Cinturón:
                             </label>
-                            <select className='form-select'>
+                            <select className='form-select' {...register('belt')}>
                                 {BELT_LIST.map((belt) => (
-                                    <option key={belt.key} value={belt.key}>
+                                    <option key={belt.key} value={belt.value}>
                                         {belt.value}
                                     </option>
                                 ))}

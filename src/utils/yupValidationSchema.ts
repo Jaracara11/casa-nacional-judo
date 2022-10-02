@@ -28,7 +28,7 @@ const memberValidation = Yup.object({
     phone2: Yup.string(),
     email: Yup.string().email(),
     belt: Yup.string(),
-    signUpDate: Yup.string(),
+    signUpDate: Yup.string().required('Campo requerido.'),
     monthlyFee: Yup.number().positive('Mensualidad debe ser mayor a Cero.').required('Campo requerido.'),
     anualFee: Yup.number().positive('Anualidad debe ser mayor a Cero.').required('Campo requerido.'),
     totalAmountDue: Yup.number(),
