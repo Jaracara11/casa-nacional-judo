@@ -27,10 +27,8 @@ const createMember = async (data: IMember) => {
     return newMember;
 };
 
-const updateMember = async (data: IMember) => {
-    debugger;
-    const member = await updateDoc(docRef(data.id!), { data });
-    return member;
+const updateMember = async (data: IMember | any) => {
+    await updateDoc(docRef(data.id!), data);
 };
 
 const deleteMember = async (id: string) => {
