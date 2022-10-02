@@ -40,6 +40,7 @@ export const UpsertMember = () => {
                 .then((response) => {
                     setMember(response);
                     reset(response);
+                    setImageURL(downloadImage(params.id!));
                 })
                 .catch((err) => {
                     console.log(err);

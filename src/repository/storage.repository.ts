@@ -11,9 +11,13 @@ const uploadImage = async (image: File, userId: string) => {
 };
 
 const downloadImage = async (fileName: string) => {
+    let imgURL!: string;
+
     await getDownloadURL(ref(imageRef(fileName))).then((url) => {
-        return url;
+        imgURL = url;
     });
+
+    return imgURL
 };
 
 export { uploadImage, downloadImage };
