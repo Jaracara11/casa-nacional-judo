@@ -22,7 +22,7 @@ export const UpsertMember = () => {
     const [loadingData, setLoadingData] = useState(true);
     const [member, setMember] = useState({} as IMember);
     const [documentImage, setDocumentImage] = useState<File>();
-    const [imageURL, setImageURL] = useState<string>('');
+    const [imageURL, setImageURL] = useState<any>('');
 
     const {
         register,
@@ -40,8 +40,8 @@ export const UpsertMember = () => {
                 .then((response) => {
                     setMember(response);
                     reset(response);
-                    downloadImage(response.id!).then((url) => {
-                        console.log(url);
+                    downloadImage(params.id!).then((response) => {
+                        console.log(response);
                     });
                 })
                 .catch((err) => {
