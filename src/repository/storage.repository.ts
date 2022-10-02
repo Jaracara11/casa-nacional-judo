@@ -11,10 +11,10 @@ const uploadImage = async (image: File, userId: string) => {
 };
 
 const downloadImage = async (fileName: string) => {
-    let imgURL!: string;
+    let imgURL: string = '';
 
     await getDownloadURL(ref(imageRef(fileName))).then((url) => {
-        imgURL = url;
+        url !== undefined && (imgURL = url);
     });
 
     return imgURL;
