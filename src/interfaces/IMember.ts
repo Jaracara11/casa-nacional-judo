@@ -4,6 +4,7 @@ export interface IMember {
     lastName: string;
     birthDate: string;
     bloodType?: string;
+    weight: string;
     identification?: string;
     address: string;
     phone1: string;

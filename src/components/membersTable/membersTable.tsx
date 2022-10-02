@@ -5,6 +5,7 @@ import { getAllMembers } from '../../repository/members.repository';
 import { IMember } from '../../interfaces/IMember';
 import { Spinner } from '../spinner/spinner';
 import { NavigateBtn } from '../buttons/navigateButton/navigateBtn';
+import { formatDate } from '../../utils/helper';
 
 export const MembersTable = () => {
     const [loadingData, setLoadingData] = useState(true);
@@ -31,7 +32,7 @@ export const MembersTable = () => {
             <thead>
                 <tr>
                     <th>Nombre</th>
-                    <th>Cedula</th>
+                    <th>Peso</th>
                     <th>Fecha De Nacimiento</th>
                     <th>Teléfono</th>
                     <th>Grado</th>
@@ -43,8 +44,8 @@ export const MembersTable = () => {
                 {members.map((member: IMember) => (
                     <tr key={member.id}>
                         <td>{`${member.firstName} ${member.lastName}`}</td>
-                        <td>{member.identification}</td>
-                        <td>{member.birthDate}</td>
+                        <td>{member.weight}</td>
+                        <td>{formatDate(member.birthDate)}</td>
                         <td>{member.phone1}</td>
                         <td>{member.belt}</td>
                         <td>{member.totalAmountDue}</td>
