@@ -165,11 +165,23 @@ export const UpsertMember = () => {
 
                     <div className='row'>
                         <div className='col'>
-                            <label className='text-muted' htmlFor='birthDate'>
-                                Fecha de nacimiento:
+                            <label className='text-muted' htmlFor='email'>
+                                Cinturón:
                             </label>
-                            <input className='form-control' {...register('birthDate')} type='date' name='birthDate' />
-                            <ErrorView error={errors.birthDate} />
+                            <select className='form-select' {...register('belt')}>
+                                {BELT_LIST.map((belt) => (
+                                    <option key={belt.key} value={belt.value}>
+                                        {belt.value}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                        <div className='col'>
+                            <label className='text-muted' htmlFor='weight'>
+                                Peso (kg):
+                            </label>
+                            <input className='form-control' {...register('weight')} type='number' name='weight' defaultValue={0} />
+                            <ErrorView error={errors.weight} />
                         </div>
                         <div className='col'>
                             <label className='text-muted' htmlFor='bloodType'>
@@ -183,23 +195,23 @@ export const UpsertMember = () => {
                     <div className='row'>
                         <div className='col'>
                             <label className='text-muted' htmlFor='birthDate'>
+                                Fecha de nacimiento:
+                            </label>
+                            <input className='form-control' {...register('birthDate')} type='date' name='birthDate' />
+                            <ErrorView error={errors.birthDate} />
+                        </div>
+                        <div className='col'>
+                            <label className='text-muted' htmlFor='birthDate'>
                                 Fecha de inscripción:
                             </label>
                             <input className='form-control' {...register('signUpDate')} type='date' name='signUpDate' />
                             <ErrorView error={errors.signUpDate} />
                         </div>
-                        <div className='col'>
-                            <label className='text-muted' htmlFor='email'>
-                                Cinturón:
-                            </label>
-                            <select className='form-select' {...register('belt')}>
-                                {BELT_LIST.map((belt) => (
-                                    <option key={belt.key} value={belt.value}>
-                                        {belt.value}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
+                    </div>
+
+                    <div className='row'>
+                        <div className='col'></div>
+                        <div className='col'></div>
                     </div>
 
                     <div className='row'>

@@ -44,7 +44,7 @@ export const MembersTable = () => {
                 {members.map((member: IMember) => (
                     <tr key={member.id}>
                         <td>{`${member.firstName} ${member.lastName}`}</td>
-                        <td>{member.weight}</td>
+                        <td>{member.weight} kg</td>
                         <td>{formatDate(member.birthDate)}</td>
                         <td>{member.phone1}</td>
                         <td>{member.belt}</td>
