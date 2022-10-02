@@ -21,6 +21,14 @@
     margin-top: 1rem;
 }
 
+.upsert-container input {
+    text-transform: capitalize;
+}
+
+.upsert-container textarea {
+    text-transform: capitalize;
+}
+
 .upsert-container input[type='file'] {
     margin-bottom: 1rem;
 }

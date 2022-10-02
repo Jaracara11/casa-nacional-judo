@@ -3,7 +3,6 @@ import Swal from 'sweetalert2';
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { BELT_LIST } from '../../utils/constants';
-import { getCurrentDate } from '../../utils/helper';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { IMember } from '../../interfaces/IMember';
