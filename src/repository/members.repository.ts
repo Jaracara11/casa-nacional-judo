@@ -3,37 +3,38 @@ import { IMember } from '../interfaces/IMember';
 import { db } from '../utils/firebase';
 import { MEMBERS_COLLECTION } from '../utils/constants';
 
-const collectionRef = (colRef: string) => {
-    return collection(db, colRef);
+const collectionRef = () => {
+    return collection(db, MEMBERS_COLLECTION);
 };
 
-const docRef = (id: string, colRef: string) => {
-    return doc(db, colRef, id);
+const docRef = (id: string) => {
+    return doc(db, MEMBERS_COLLECTION, id);
 };
 
 const getAllMembers = async () => {
-    const q = query(collectionRef(MEMBERS_COLLECTION), orderBy('firstName'));
+    const q = query(collectionRef(), orderBy('firstName'));
     const data = await getDocs(q);
     return data.docs.map((doc: any) => ({ ...doc.data(), id: doc.id }));
 };
 
 const getMemberById = async (id: string) => {
-    const docSnap = await getDoc(docRef(id, MEMBERS_COLLECTION));
+    const docSnap = await getDoc(docRef(id));
     return docSnap.data() as IMember;
 };
 
 const createMember = async (data: IMember) => {
-    const newMember = await addDoc(collectionRef(MEMBERS_COLLECTION), data);
+    const newMember = await addDoc(collectionRef(), data);
     return newMember;
 };
 
 const updateMember = async (data: IMember) => {
-    const member = await updateDoc(docRef(data.id!, MEMBERS_COLLECTION), { data });
+    debugger;
+    const member = await updateDoc(docRef(data.id!), { data });
     return member;
 };
 
 const deleteMember = async (id: string) => {
-    await deleteDoc(docRef(id, MEMBERS_COLLECTION));
+    await deleteDoc(docRef(id));
 };
 
 export { getAllMembers, getMemberById, createMember, updateMember, deleteMember };

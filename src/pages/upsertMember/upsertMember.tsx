@@ -14,7 +14,7 @@ import { ErrorView } from '../../components/errorView/errorView';
 import { NavigateBtn } from '../../components/buttons/navigateButton/navigateBtn';
 import { ImagePreview } from '../../components/imagePreview/imagePreview';
 import { Button } from 'react-bootstrap';
-import { parseNewMemberObject } from '../../services/parser.service';
+import { parseNewMemberObject, parseUpdateMemberObject } from '../../services/parser.service';
 
 export const UpsertMember = () => {
     const navigate = useNavigate();
@@ -71,7 +71,9 @@ export const UpsertMember = () => {
                 setLoadingData(true);
                 try {
                     if (params.id) {
-                        updateMember(values);
+                        updateMember(parseUpdateMemberObject(values, params.id)).then((response) => {
+                            console.log(response);
+                        });
                         SwalObj.fire({
                             html: `<strong>Miembro Actualizado!</strong>`,
                             icon: 'info',
