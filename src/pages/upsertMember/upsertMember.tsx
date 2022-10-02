@@ -7,7 +7,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { IMember } from '../../interfaces/IMember';
 import { getMemberById, updateMember, createMember } from '../../repository/members.repository';
-import { uploadImage } from '../../repository/storage.repository';
+import { downloadImage, uploadImage } from '../../repository/storage.repository';
 import { memberValidation } from '../../utils/yupValidationSchema';
 import { Spinner } from '../../components/spinner/spinner';
 import { ErrorView } from '../../components/errorView/errorView';
@@ -22,6 +22,7 @@ export const UpsertMember = () => {
     const [loadingData, setLoadingData] = useState(true);
     const [member, setMember] = useState({} as IMember);
     const [documentImage, setDocumentImage] = useState<File>();
+    const [imageURL, setImageURL] = useState<string>('');
 
     const {
         register,
@@ -39,6 +40,9 @@ export const UpsertMember = () => {
                 .then((response) => {
                     setMember(response);
                     reset(response);
+                    downloadImage(response.id!).then((url) => {
+                        console.log(url);
+                    });
                 })
                 .catch((err) => {
                     console.log(err);
