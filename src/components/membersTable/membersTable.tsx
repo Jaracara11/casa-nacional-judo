@@ -12,7 +12,7 @@ import { MemberModal } from '../memberModal/memberModal';
 export const MembersTable = () => {
     const [loadingData, setLoadingData] = useState(true);
     const [members, setMembers] = useState<IMember[]>([]);
-    const [showModal, setShowModal] = useState(false);
+    const [showModal, setShowModal] = useState<boolean>(false);
 
     useEffect(() => {
         const loadMembers = async () => {
@@ -53,19 +53,18 @@ export const MembersTable = () => {
                         <td>{member.belt}</td>
                         <td>{member.totalAmountDue} RD$</td>
                         <td>
-                            <Link to={`/edit-member/${member.id}`}>Mas Información</Link>
+                            <Link
+                                to={'#'}
+                                onClick={() => {
+                                    setShowModal(!showModal);
+                                }}>
+                                Mas Información
+                            </Link>
                         </td>
                     </tr>
                 ))}
             </tbody>
-            <Button
-                variant='primary'
-                onClick={() => {
-                    setShowModal(!showModal);
-                }}>
-                Launch demo modal
-            </Button>
-            {showModal && <MemberModal />}
+            {showModal && <MemberModal show={showModal} />}
         </Table>
     );
 };
