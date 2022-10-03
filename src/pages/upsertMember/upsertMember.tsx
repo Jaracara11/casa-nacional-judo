@@ -121,14 +121,14 @@ export const UpsertMember = () => {
                 <h1>{params.id ? 'Editar' : 'Agregar'} Miembro</h1>
                 <div className='form-control'>
                     <div className='row'>
-                        <div className='col'>
+                        <div className='col-sm-6'>
                             <label className='text-muted' htmlFor='firstName'>
                                 Nombres:
                             </label>
                             <input className='form-control' {...register('firstName')} type='text' name='firstName' minLength={3} maxLength={20} />
                             <ErrorView error={errors.firstName} />
                         </div>
-                        <div className='col'>
+                        <div className='col-sm-6'>
                             <label className='text-muted' htmlFor='lastName'>
                                 Apellidos:
                             </label>
@@ -138,14 +138,14 @@ export const UpsertMember = () => {
                     </div>
 
                     <div className='row'>
-                        <div className='col'>
+                        <div className='col-sm-6'>
                             <label className='text-muted' htmlFor='identification'>
                                 Cédula:
                             </label>
                             <input className='form-control' {...register('identification')} type='text' name='identification' maxLength={11} />
                             <ErrorView error={errors.identification} />
                         </div>
-                        <div className='col'>
+                        <div className='col-sm-6'>
                             <label className='text-muted' htmlFor='email'>
                                 Email:
                             </label>
@@ -155,14 +155,14 @@ export const UpsertMember = () => {
                     </div>
 
                     <div className='row'>
-                        <div className='col'>
+                        <div className='col-sm-6'>
                             <label className='text-muted' htmlFor='phone1'>
                                 Teléfono 1:
                             </label>
                             <input className='form-control' {...register('phone1')} type='text' name='phone1' minLength={10} maxLength={10} />
                             <ErrorView error={errors.phone1} />
                         </div>
-                        <div className='col'>
+                        <div className='col-sm-6'>
                             <label className='text-muted' htmlFor='phone2'>
                                 Teléfono 2:
                             </label>
@@ -172,7 +172,7 @@ export const UpsertMember = () => {
                     </div>
 
                     <div className='row'>
-                        <div className='col'>
+                        <div className='col-sm-4'>
                             <label className='text-muted' htmlFor='email'>
                                 Cinturón:
                             </label>
@@ -184,14 +184,14 @@ export const UpsertMember = () => {
                                 ))}
                             </select>
                         </div>
-                        <div className='col'>
+                        <div className='col-sm-4'>
                             <label className='text-muted' htmlFor='weight'>
                                 Peso (kg):
                             </label>
                             <input className='form-control' {...register('weight')} type='number' name='weight' defaultValue={0} />
                             <ErrorView error={errors.weight} />
                         </div>
-                        <div className='col'>
+                        <div className='col-sm-4'>
                             <label className='text-muted' htmlFor='bloodType'>
                                 Tipo de sangre:
                             </label>
