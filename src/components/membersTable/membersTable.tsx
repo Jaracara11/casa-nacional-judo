@@ -6,10 +6,13 @@ import { getAllMembers } from '../../repository/members.repository';
 import { IMember } from '../../interfaces/IMember';
 import { Spinner } from '../spinner/spinner';
 import { formatDate } from '../../utils/helper';
+import Button from 'react-bootstrap/Button';
+import { MemberModal } from '../memberModal/memberModal';
 
 export const MembersTable = () => {
     const [loadingData, setLoadingData] = useState(true);
     const [members, setMembers] = useState<IMember[]>([]);
+    const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
         const loadMembers = async () => {
@@ -55,6 +58,14 @@ export const MembersTable = () => {
                     </tr>
                 ))}
             </tbody>
+            <Button
+                variant='primary'
+                onClick={() => {
+                    setShowModal(!showModal);
+                }}>
+                Launch demo modal
+            </Button>
+            {showModal && <MemberModal />}
         </Table>
     );
 };
