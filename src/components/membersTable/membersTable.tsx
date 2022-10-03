@@ -48,7 +48,7 @@ export const MembersTable = () => {
                         <td>{formatDate(member.birthDate)}</td>
                         <td>{member.phone1}</td>
                         <td>{member.belt}</td>
-                        <td>{member.totalAmountDue}</td>
+                        <td>{member.totalAmountDue} RD$</td>
                         <td>
                             <Link to={`/edit-member/${member.id}`}>Mas Información</Link>
                         </td>
