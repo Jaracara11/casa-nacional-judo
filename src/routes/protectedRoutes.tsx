@@ -3,7 +3,7 @@ import { UserAuth } from '../context/userContext';
 import { Auth } from '../pages/auth/auth';
 
 export const ProtectedRoutes = () => {
-  const { user } = UserAuth();
+    const { user } = UserAuth();
 
-  return user ? <Outlet /> : <Auth />;
+    return user ? <Outlet /> : <Auth />;
 };
