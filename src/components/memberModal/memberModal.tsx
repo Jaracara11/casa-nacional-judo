@@ -1,9 +1,9 @@
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 
-export const MemberModal = (showModal: any) => {
+export const MemberModal = () => {
     return (
-        showModal && (
+        <>
             <Modal.Dialog>
                 <Modal.Header closeButton>
                     <Modal.Title>Modal title</Modal.Title>
@@ -18,6 +18,6 @@ export const MemberModal = (showModal: any) => {
                     <Button variant='primary'>Save changes</Button>
                 </Modal.Footer>
             </Modal.Dialog>
-        )
+        </>
     );
 };
