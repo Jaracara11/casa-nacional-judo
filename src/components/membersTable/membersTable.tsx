@@ -1,10 +1,10 @@
 import './membersTable.css';
 import Table from 'react-bootstrap/esm/Table';
+import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { getAllMembers } from '../../repository/members.repository';
 import { IMember } from '../../interfaces/IMember';
 import { Spinner } from '../spinner/spinner';
-import { NavigateBtn } from '../buttons/navigateButton/navigateBtn';
 import { formatDate } from '../../utils/helper';
 
 export const MembersTable = () => {
@@ -50,7 +50,7 @@ export const MembersTable = () => {
                         <td>{member.belt}</td>
                         <td>{member.totalAmountDue}</td>
                         <td>
-                            <NavigateBtn route={`/edit-member/${member.id}`} variant='btn btn-success btn-sm' text={'Mas Información'} />
+                            <Link to={`/edit-member/${member.id}`}>Mas Información</Link>
                         </td>
                     </tr>
                 ))}
