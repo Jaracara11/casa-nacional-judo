@@ -40,9 +40,10 @@ export const UpsertMember = () => {
                 .then((response) => {
                     setMember(response);
                     reset(response);
-                    downloadImage(params.id!).then((url) => {
-                        setImageURL(url);
-                    });
+                    response.hasDocumentImage &&
+                        downloadImage(params.id!).then((url) => {
+                            setImageURL(url);
+                        });
                 })
                 .catch((err) => {
                     console.log(err);
@@ -75,8 +76,12 @@ export const UpsertMember = () => {
                 setLoadingData(true);
                 try {
                     if (params.id) {
+                        if (documentImage) {
+                            uploadImage(documentImage, params.id);
+                            values.hasDocumentImage = true;
+                        }
                         updateMember(parseUpdateMemberObject(values, params.id));
-                        documentImage && uploadImage(documentImage, params.id);
+
                         SwalObj.fire({
                             html: `<strong>Miembro Actualizado!</strong>`,
                             icon: 'info',
@@ -85,6 +90,7 @@ export const UpsertMember = () => {
                             navigate('/');
                         });
                     } else {
+                        documentImage && (values.hasDocumentImage = true);
                         createMember(parseNewMemberObject(values)).then((response) => {
                             documentImage && uploadImage(documentImage, response.id);
                         });

@@ -14,7 +14,7 @@ const downloadImage = async (fileName: string) => {
     let imgURL: string = '';
 
     await getDownloadURL(ref(imageRef(fileName))).then((url) => {
-        url !== undefined && (imgURL = url);
+        imgURL = url;
     });
 
     return imgURL;
