@@ -14,7 +14,7 @@
 
 .upsert-container .btn-primary {
     float: right;
-    min-width: 150px;
+    width: 200px;
 }
 
 .upsert-container label {
@@ -23,4 +23,17 @@
 
 .upsert-container input[type='file'] {
     margin-bottom: 1rem;
+}
+
+@media (max-width: 660px) {
+    .upsert-container button {
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+}
+
+@media (max-width: 320px) {
+    .upsert-container .btn-primary {
+        width: 150px;
+    }
 }
