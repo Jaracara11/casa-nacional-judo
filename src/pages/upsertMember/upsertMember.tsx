@@ -265,7 +265,7 @@ export const UpsertMember = () => {
                             />
                             <ErrorView error={errors.documentImage} />
                             {documentImage && <ImagePreview file={documentImage} />}
-                            {imageURL && (
+                            {imageURL && !documentImage && (
                                 <div className='img-preview mt-1'>
                                     <img className='img-preview mt-1' src={imageURL} alt='Preview' />
                                 </div>
