@@ -264,7 +264,7 @@ export const UpsertMember = () => {
                             {documentImage && <ImagePreview file={documentImage} />}
                             {imageURL && !documentImage && (
                                 <div className='img-preview mt-1'>
-                                    <img className='img-preview mt-1' src={imageURL} alt='Preview' />
+                                    <img src={imageURL} alt='Preview' />
                                 </div>
                             )}
                         </div>
