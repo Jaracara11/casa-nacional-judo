@@ -7,7 +7,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { IMember } from '../../interfaces/IMember';
 import { getMemberById, updateMember, createMember } from '../../repository/members.repository';
-import { downloadImage, uploadImage } from '../../repository/storage.repository';
+import { getImageURL, uploadImage } from '../../repository/storage.repository';
 import { memberValidation } from '../../utils/yupValidationSchema';
 import { Spinner } from '../../components/spinner/spinner';
 import { ErrorView } from '../../components/errorView/errorView';
@@ -19,6 +19,7 @@ import { parseNewMemberObject, parseUpdateMemberObject } from '../../services/pa
 export const UpsertMember = () => {
     const navigate = useNavigate();
     const params = useParams();
+
     const [loadingData, setLoadingData] = useState(true);
     const [member, setMember] = useState({} as IMember);
     const [documentImage, setDocumentImage] = useState<File>();
@@ -41,7 +42,7 @@ export const UpsertMember = () => {
                     setMember(response);
                     reset(response);
                     response.hasDocumentImage &&
-                        downloadImage(params.id!).then((url) => {
+                        getImageURL(params.id!).then((url) => {
                             setImageURL(url);
                         });
                 })
@@ -76,10 +77,7 @@ export const UpsertMember = () => {
                 setLoadingData(true);
                 try {
                     if (params.id) {
-                        if (documentImage) {
-                            uploadImage(documentImage, params.id);
-                            values.hasDocumentImage = true;
-                        }
+                        documentImage && uploadImage(documentImage, params.id);
                         updateMember(parseUpdateMemberObject(values, params.id));
 
                         SwalObj.fire({
@@ -90,7 +88,6 @@ export const UpsertMember = () => {
                             navigate('/');
                         });
                     } else {
-                        documentImage && (values.hasDocumentImage = true);
                         createMember(parseNewMemberObject(values)).then((response) => {
                             documentImage && uploadImage(documentImage, response.id);
                         });

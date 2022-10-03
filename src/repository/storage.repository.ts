@@ -10,7 +10,7 @@ const uploadImage = async (image: File, userId: string) => {
     await uploadBytes(imageRef(userId), image);
 };
 
-const downloadImage = async (fileName: string) => {
+const getImageURL = async (fileName: string) => {
     let imgURL: string = '';
 
     await getDownloadURL(ref(imageRef(fileName))).then((url) => {
@@ -20,4 +20,4 @@ const downloadImage = async (fileName: string) => {
     return imgURL;
 };
 
-export { uploadImage, downloadImage };
+export { uploadImage, getImageURL };
