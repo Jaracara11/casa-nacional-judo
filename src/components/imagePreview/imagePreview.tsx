@@ -11,11 +11,5 @@ export const ImagePreview = ({ file }: any) => {
         setPreview(reader.result);
     };
 
-    return preview ? (
-        <div className='img-preview mt-1'>
-            <img src={preview?.toString()} alt='Preview' />
-        </div>
-    ) : (
-        <Spinner />
-    );
+    return preview ? <img className='img-preview' src={preview?.toString()} alt='Preview' /> : <Spinner />;
 };

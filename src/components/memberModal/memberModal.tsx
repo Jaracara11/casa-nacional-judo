@@ -36,6 +36,9 @@ export const MemberModal = (props: any) => {
                             <strong>Edad:</strong> {getAgeFromDate(member.birthDate)}
                         </ListGroup.Item>
                         <ListGroup.Item>
+                            <strong>Fecha de nacimiento:</strong> {formatDate(member.birthDate)}
+                        </ListGroup.Item>
+                        <ListGroup.Item>
                             <strong>Cinturón:</strong> {member.belt}
                         </ListGroup.Item>
                         <ListGroup.Item>

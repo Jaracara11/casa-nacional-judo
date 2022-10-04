@@ -6,12 +6,18 @@
 
 @media (max-width: 430px) {
     .img-preview {
-        height: 200px;
+        height: 200px !important;
+    }
+}
+
+@media (max-width: 360px) {
+    .img-preview {
+        height: 200px !important;
     }
 }
 
 @media (max-width: 330px) {
     .img-preview {
-        height: 150px;
+        height: 150px !important;
     }
 }
