@@ -37,12 +37,10 @@ export const UpsertMember = () => {
 
     useEffect(() => {
         //reset(response);
-        console.log(location.state.data);
+        console.log(location.state.member);
         console.log(location.state.imageURL);
         setLoadingData(false);
     }, []);
-
-    const from = location.state?.from?.pathname || '/';
 
     const submitUserData: any = (values: IMember) => {
         const SwalObj = Swal.mixin({
