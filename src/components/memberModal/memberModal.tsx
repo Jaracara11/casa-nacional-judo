@@ -1,6 +1,9 @@
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import ListGroup from 'react-bootstrap/ListGroup';
 import { IMember } from '../../interfaces/IMember';
+import { ListGroupItem } from 'react-bootstrap';
+import { getAge } from '../../utils/helper';
 
 export const MemberModal = (props: any) => {
     const member: IMember = props.member;
@@ -9,9 +12,21 @@ export const MemberModal = (props: any) => {
         <>
             <Modal show={props.show} onHide={props.toggle} centered>
                 <Modal.Header closeButton>
-                    <Modal.Title>Modal heading</Modal.Title>
+                    <Modal.Title>{member.firstName + ' ' + member.lastName}</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+                <Modal.Body>
+                    <ListGroup className='list-group-flush'>
+                        <ListGroup.Item>
+                            <strong>Peso:</strong> {member.weight} kg
+                        </ListGroup.Item>
+                        <ListGroup.Item>
+                            <strong>Cinturón:</strong> {member.belt}
+                        </ListGroup.Item>
+                        <ListGroup.Item>
+                            <strong>Edad:</strong> {getAge(member.birthDate)}
+                        </ListGroup.Item>
+                    </ListGroup>
+                </Modal.Body>
                 <Modal.Footer>
                     <Button
                         variant='secondary'
