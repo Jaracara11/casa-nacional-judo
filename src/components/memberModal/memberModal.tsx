@@ -1,48 +1,27 @@
-import { useState, useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 
-export const MemberModal = (displayModal: any) => {
-    const [show, setShow] = useState(false);
-
-    useEffect(() => {
-        displayModal && setShow(!show);
-        return () => {
-            setShow(!show);
-        };
-    }, []);
-
+export const MemberModal = (props: any) => {
     return (
-        displayModal && (
-            <>
-                <Modal
-                    show={show}
-                    onHide={() => {
-                        setShow(!show);
-                    }}
-                    centered>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Modal heading</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
-                    <Modal.Footer>
-                        <Button
-                            variant='secondary'
-                            onClick={() => {
-                                setShow(!show);
-                            }}>
-                            Close
-                        </Button>
-                        <Button
-                            variant='primary'
-                            onClick={() => {
-                                setShow(!show);
-                            }}>
-                            Save Changes
-                        </Button>
-                    </Modal.Footer>
-                </Modal>
-            </>
-        )
+        <>
+            <Modal show={props.show} onHide={props.toggle} centered>
+                <Modal.Header closeButton>
+                    <Modal.Title>Modal heading</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+                <Modal.Footer>
+                    <Button
+                        variant='secondary'
+                        onClick={() => {
+                            props.toggle(false);
+                        }}>
+                        Close
+                    </Button>
+                    <Button variant='primary' onClick={() => {}}>
+                        Save Changes
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+        </>
     );
 };

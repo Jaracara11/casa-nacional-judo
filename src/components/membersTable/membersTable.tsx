@@ -13,6 +13,8 @@ export const MembersTable = () => {
     const [members, setMembers] = useState<IMember[]>([]);
     const [showModal, setShowModal] = useState<boolean>(false);
 
+    const toggleModal = () => setShowModal((prev) => !prev);
+
     useEffect(() => {
         const loadMembers = async () => {
             await getAllMembers()
@@ -53,11 +55,7 @@ export const MembersTable = () => {
                             <td>{member.belt}</td>
                             <td>{member.totalAmountDue} RD$</td>
                             <td>
-                                <Link
-                                    to={'#'}
-                                    onClick={() => {
-                                        setShowModal(!showModal);
-                                    }}>
+                                <Link to={'#'} onClick={toggleModal}>
                                     Mas Información
                                 </Link>
                             </td>
@@ -65,7 +63,7 @@ export const MembersTable = () => {
                     ))}
                 </tbody>
             </Table>
-            {showModal && <MemberModal displayModal={showModal} />}
+            {showModal && <MemberModal toggle={toggleModal} show={showModal} />}
         </>
     );
 };
