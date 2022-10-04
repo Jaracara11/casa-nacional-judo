@@ -1,7 +1,7 @@
 import './upsertmember.css';
 import Swal from 'sweetalert2';
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { BELT_LIST } from '../../utils/constants';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -17,6 +17,7 @@ import { Button } from 'react-bootstrap';
 import { parseNewMemberObject, parseUpdateMemberObject } from '../../services/parser.service';
 
 export const UpsertMember = () => {
+    const location = useLocation() as any;
     const navigate = useNavigate();
     const params = useParams();
 
@@ -35,24 +36,13 @@ export const UpsertMember = () => {
     });
 
     useEffect(() => {
-        const getMember = async () => {
-            setLoadingData(true);
-            await getMemberById(params.id!)
-                .then((response) => {
-                    setMember(response);
-                    reset(response);
-                    response.hasDocumentImage &&
-                        getImageURL(params.id!).then((url) => {
-                            setImageURL(url);
-                        });
-                })
-                .catch((err) => {
-                    console.log(err);
-                });
-            setLoadingData(false);
-        };
-        params.id ? getMember() : setLoadingData(false);
-    }, [params.id, reset]);
+        //reset(response);
+        console.log(location.state.data);
+        console.log(location.state.imageURL);
+        setLoadingData(false);
+    }, []);
+
+    const from = location.state?.from?.pathname || '/';
 
     const submitUserData: any = (values: IMember) => {
         const SwalObj = Swal.mixin({

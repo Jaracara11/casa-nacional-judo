@@ -13,7 +13,7 @@ export const Router = () => {
             <Route element={<ProtectedRoutes />}>
                 <Route path='/' element={<Home />} />
                 <Route path='/add-member' element={<UpsertMember />} />
-                <Route path='/edit-member/:id' element={<UpsertMember />} />
+                <Route path='/edit-member' element={<UpsertMember />} />
             </Route>
         </Routes>
     );

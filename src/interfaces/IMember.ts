@@ -17,4 +17,5 @@ export interface IMember {
     totalAmountDue: number;
     hasDocumentImage: boolean;
     documentImage?: FileList;
+    memberImageURL?: string;
 }

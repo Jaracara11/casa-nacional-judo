@@ -1,4 +1,5 @@
 import './memberModal.css';
+import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
@@ -87,7 +88,9 @@ export const MemberModal = (props: any) => {
                         }}>
                         Cerrar
                     </Button>
-                    <NavigateBtn route={`/edit-member/${member.id}`} variant='btn btn-primary' text={'Editar'} />
+                    <Link className='btn btn-primary' to={'/edit-member'} state={{ member, imageURL }}>
+                        Editar
+                    </Link>
                 </Modal.Footer>
             </Modal>
         </div>
