@@ -2,6 +2,7 @@ import './memberModal.css';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import ListGroup from 'react-bootstrap/ListGroup';
+import { NavigateBtn } from '../buttons/navigateButton/navigateBtn';
 import { IMember } from '../../interfaces/IMember';
 import { formatDate, getAgeFromDate } from '../../utils/helper';
 
@@ -67,9 +68,7 @@ export const MemberModal = (props: any) => {
                         }}>
                         Cerrar
                     </Button>
-                    <Button variant='primary' onClick={() => {}}>
-                        Editar
-                    </Button>
+                    <NavigateBtn route={`/edit-member/${member.id}`} variant='btn btn-primary' text={'Editar'} />
                 </Modal.Footer>
             </Modal>
         </>
