@@ -242,7 +242,7 @@ export const UpsertMember = () => {
                     <label className='text-muted' htmlFor='address'>
                         Dirección:
                     </label>
-                    <textarea className='form-control' {...register('address')} name='address' maxLength={60} />
+                    <textarea className='form-control' {...register('address')} name='address' maxLength={80} />
                     <ErrorView error={errors.address} />
 
                     <div className='row'>
@@ -262,11 +262,7 @@ export const UpsertMember = () => {
                             />
                             <ErrorView error={errors.documentImage} />
                             {documentImage && <ImagePreview file={documentImage} />}
-                            {imageURL && !documentImage && (
-                                <div className='img-preview mt-1'>
-                                    <img src={imageURL} alt='Preview' />
-                                </div>
-                            )}
+                            {imageURL && !documentImage && <img className='img-preview' src={imageURL} alt='Preview' />}
                         </div>
                     </div>
                 </div>

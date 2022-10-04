@@ -1,16 +1,26 @@
 import './memberModal.css';
+import { useState, useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import ListGroup from 'react-bootstrap/ListGroup';
 import { NavigateBtn } from '../buttons/navigateButton/navigateBtn';
 import { IMember } from '../../interfaces/IMember';
 import { formatDate, getAgeFromDate } from '../../utils/helper';
+import { getImageURL } from '../../repository/storage.repository';
 
 export const MemberModal = (props: any) => {
     const member: IMember = props.member;
+    const [imageURL, setImageURL] = useState<string>('');
+
+    useEffect(() => {
+        member.hasDocumentImage &&
+            getImageURL(member.id!).then((url) => {
+                setImageURL(url);
+            });
+    }, []);
 
     return (
-        <>
+        <div className='member-modal'>
             <Modal show={props.show} onHide={props.toggle} centered backdrop='static'>
                 <Modal.Header closeButton>
                     <Modal.Title>
@@ -58,6 +68,12 @@ export const MemberModal = (props: any) => {
                         <ListGroup.Item>
                             <strong>Dirección: </strong> {member.address}
                         </ListGroup.Item>
+                        {imageURL && (
+                            <ListGroup.Item>
+                                <strong>Imagen de documento:</strong>
+                                <img className='img-preview' src={imageURL} alt='Preview' />
+                            </ListGroup.Item>
+                        )}
                     </ListGroup>
                 </Modal.Body>
                 <Modal.Footer>
@@ -71,6 +87,6 @@ export const MemberModal = (props: any) => {
                     <NavigateBtn route={`/edit-member/${member.id}`} variant='btn btn-primary' text={'Editar'} />
                 </Modal.Footer>
             </Modal>
-        </>
+        </div>
     );
 };

@@ -1,18 +1,17 @@
-.img-preview img {
+.img-preview {
     border-radius: 5px;
     width: 100%;
     height: 300px;
-    margin-bottom: 0.5rem;
 }
 
 @media (max-width: 430px) {
-    .img-preview img {
+    .img-preview {
         height: 200px;
     }
 }
 
 @media (max-width: 330px) {
-    .img-preview img {
+    .img-preview {
         height: 150px;
     }
 }
