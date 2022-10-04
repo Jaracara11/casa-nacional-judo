@@ -28,10 +28,7 @@ export const MembersTable = () => {
         loadMembers();
     }, []);
 
-    const elementToObserve: any = document.querySelector('body');
-    mutationObserver.observe(elementToObserve, { childList: true });
-
-    console.log(elementToObserve.className);
+    mutationObserver('body') && setShowModal(!showModal);
 
     return loadingData ? (
         <Spinner />

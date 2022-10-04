@@ -18,9 +18,16 @@ const formatDate = (date: string) => {
     return new Date(date).toLocaleDateString('es-ES', options);
 };
 
-const mutationObserver = new MutationObserver((entries) => {
-    console.log(entries);
-    return entries;
-});
+const mutationObserver = (docElement: string) => {
+    const elementToObserve: any = document.querySelector(docElement);
+    let mutation: boolean = false;
+    const observer = new MutationObserver((entries) => {
+        entries.length > 0 && (mutation = true);
+        console.log(entries.length);
+        console.log(mutation);
+    });
+    observer.observe(elementToObserve, { childList: true });
+    return mutation;
+};
 
 export { firstCharToUpper, getCurrentDate, formatDate, mutationObserver };
