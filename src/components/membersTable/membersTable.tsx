@@ -65,7 +65,7 @@ export const MembersTable = () => {
                     ))}
                 </tbody>
             </Table>
-            {showModal && <MemberModal />}
+            {showModal && <MemberModal displayModal={showModal} />}
         </>
     );
 };

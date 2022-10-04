@@ -1,23 +1,48 @@
+import { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 
-export const MemberModal = () => {
+export const MemberModal = (displayModal: any) => {
+    const [show, setShow] = useState(false);
     return (
-        <>
-            <Modal.Dialog>
-                <Modal.Header closeButton>
-                    <Modal.Title>Modal title</Modal.Title>
-                </Modal.Header>
+        displayModal && (
+            <>
+                <Button
+                    className='nextButton'
+                    onClick={() => {
+                        setShow(!show);
+                    }}>
+                    Open Modal
+                </Button>
 
-                <Modal.Body>
-                    <p>Modal body text goes here.</p>
-                </Modal.Body>
-
-                <Modal.Footer>
-                    <Button variant='secondary'>Close</Button>
-                    <Button variant='primary'>Save changes</Button>
-                </Modal.Footer>
-            </Modal.Dialog>
-        </>
+                <Modal
+                    show={show}
+                    onHide={() => {
+                        setShow(!show);
+                    }}
+                    centered>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Modal heading</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+                    <Modal.Footer>
+                        <Button
+                            variant='secondary'
+                            onClick={() => {
+                                setShow(!show);
+                            }}>
+                            Close
+                        </Button>
+                        <Button
+                            variant='primary'
+                            onClick={() => {
+                                setShow(!show);
+                            }}>
+                            Save Changes
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+            </>
+        )
     );
 };
