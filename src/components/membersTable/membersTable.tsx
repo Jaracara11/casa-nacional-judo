@@ -3,6 +3,7 @@ import Table from 'react-bootstrap/esm/Table';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { getAllMembers } from '../../repository/members.repository';
+import { mutationObserver } from '../../utils/helper';
 import { IMember } from '../../interfaces/IMember';
 import { Spinner } from '../spinner/spinner';
 import { formatDate } from '../../utils/helper';
@@ -26,6 +27,11 @@ export const MembersTable = () => {
         };
         loadMembers();
     }, []);
+
+    const elementToObserve: any = document.querySelector('body');
+    mutationObserver.observe(elementToObserve, { childList: true });
+
+    console.log(elementToObserve.className);
 
     return loadingData ? (
         <Spinner />

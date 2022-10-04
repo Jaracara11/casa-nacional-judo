@@ -18,4 +18,9 @@ const formatDate = (date: string) => {
     return new Date(date).toLocaleDateString('es-ES', options);
 };
 
-export { firstCharToUpper, getCurrentDate, formatDate };
+const mutationObserver = new MutationObserver((entries) => {
+    console.log(entries);
+    return entries;
+});
+
+export { firstCharToUpper, getCurrentDate, formatDate, mutationObserver };
