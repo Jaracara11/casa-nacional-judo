@@ -17,17 +17,16 @@ export const MembersTable = () => {
     const toggleModal = () => setShowModal((prev) => !prev);
 
     useEffect(() => {
-        const loadMembers = async () => {
-            await getAllMembers()
-                .then((response) => {
-                    setMembers(response);
-                })
-                .catch((err) => {
-                    console.log(err);
-                });
-            setLoadingData(false);
-        };
-        loadMembers();
+        getAllMembers()
+            .then((response) => {
+                setMembers(response);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+            .finally(() => {
+                setLoadingData(false);
+            });
     }, []);
 
     return loadingData ? (
@@ -59,8 +58,8 @@ export const MembersTable = () => {
                                 <Link
                                     to={'#'}
                                     onClick={() => {
-                                        toggleModal();
                                         setMember(member);
+                                        toggleModal();
                                     }}>
                                     Ver más
                                 </Link>

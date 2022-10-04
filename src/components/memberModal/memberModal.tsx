@@ -4,20 +4,21 @@ import { useState, useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import ListGroup from 'react-bootstrap/ListGroup';
-import { NavigateBtn } from '../buttons/navigateButton/navigateBtn';
 import { IMember } from '../../interfaces/IMember';
 import { formatDate, getAgeFromDate } from '../../utils/helper';
 import { getImageURL } from '../../repository/storage.repository';
 
 export const MemberModal = (props: any) => {
-    const member: IMember = props.member;
-    const [imageURL, setImageURL] = useState<string>('');
+    const [member, setMember] = useState({} as IMember);
 
     useEffect(() => {
-        member.hasDocumentImage &&
-            getImageURL(member.id!).then((url) => {
-                setImageURL(url);
+        if (props.member.hasPhoto) {
+            getImageURL(props.member.id!).then((url) => {
+                setMember(() => ({ ...props.member, photoURL: url }));
             });
+        } else {
+            setMember(props.member);
+        }
     }, []);
 
     return (
@@ -72,10 +73,10 @@ export const MemberModal = (props: any) => {
                         <ListGroup.Item>
                             <strong>Dirección: </strong> {member.address}
                         </ListGroup.Item>
-                        {imageURL && (
+                        {member.photoURL && (
                             <ListGroup.Item>
                                 <strong>Imagen de documento:</strong>
-                                <img className='img-preview' src={imageURL} alt='Preview' />
+                                <img className='img-preview' src={member.photoURL} alt='Preview' />
                             </ListGroup.Item>
                         )}
                     </ListGroup>
@@ -88,7 +89,7 @@ export const MemberModal = (props: any) => {
                         }}>
                         Cerrar
                     </Button>
-                    <Link className='btn btn-primary' to={'/edit-member'} state={{ member, imageURL }}>
+                    <Link className='btn btn-primary' to={'/edit-member'} state={{ member }}>
                         Editar
                     </Link>
                 </Modal.Footer>

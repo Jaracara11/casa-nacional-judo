@@ -15,7 +15,7 @@ export interface IMember {
     monthlyFee: number;
     anualFee: number;
     totalAmountDue: number;
-    hasDocumentImage: boolean;
-    documentImage?: FileList;
-    memberImageURL?: string;
+    hasPhoto: boolean;
+    photo?: FileList;
+    photoURL?: string;
 }

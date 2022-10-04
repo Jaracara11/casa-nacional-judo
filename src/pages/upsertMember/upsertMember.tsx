@@ -36,9 +36,8 @@ export const UpsertMember = () => {
     });
 
     useEffect(() => {
-        //reset(response);
-        console.log(location.state.member);
-        console.log(location.state.imageURL);
+        setMember(location.state.member);
+        reset(location.state.member);
         setLoadingData(false);
     }, []);
 
@@ -250,7 +249,7 @@ export const UpsertMember = () => {
                             />
                             <ErrorView error={errors.documentImage} />
                             {documentImage && <ImagePreview file={documentImage} />}
-                            {imageURL && !documentImage && <img className='img-preview' src={imageURL} alt='Preview' />}
+                            {member.photoURL && !documentImage && <img className='img-preview' src={member.photoURL} alt='Preview' />}
                         </div>
                     </div>
                 </div>
