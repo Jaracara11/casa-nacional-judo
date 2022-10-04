@@ -1,13 +1,11 @@
 import { useState, useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
-import { debug } from 'console';
 
 export const MemberModal = (displayModal: any) => {
     const [show, setShow] = useState(false);
 
     useEffect(() => {
-        console.log('Modal Rendered');
         displayModal && setShow(!show);
         return () => {
             setShow(!show);
