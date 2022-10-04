@@ -1,7 +1,10 @@
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import { IMember } from '../../interfaces/IMember';
 
 export const MemberModal = (props: any) => {
+    const member: IMember = props.member;
+
     return (
         <>
             <Modal show={props.show} onHide={props.toggle} centered>

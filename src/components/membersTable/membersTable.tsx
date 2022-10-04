@@ -11,6 +11,7 @@ import { MemberModal } from '../memberModal/memberModal';
 export const MembersTable = () => {
     const [loadingData, setLoadingData] = useState(true);
     const [members, setMembers] = useState<IMember[]>([]);
+    const [member, setMember] = useState({} as IMember);
     const [showModal, setShowModal] = useState<boolean>(false);
 
     const toggleModal = () => setShowModal((prev) => !prev);
@@ -55,15 +56,20 @@ export const MembersTable = () => {
                             <td>{member.belt}</td>
                             <td>{member.totalAmountDue} RD$</td>
                             <td>
-                                <Link to={'#'} onClick={toggleModal}>
-                                    Mas Información
+                                <Link
+                                    to={'#'}
+                                    onClick={() => {
+                                        toggleModal();
+                                        setMember(member);
+                                    }}>
+                                    Ver más
                                 </Link>
                             </td>
                         </tr>
                     ))}
                 </tbody>
             </Table>
-            {showModal && <MemberModal toggle={toggleModal} show={showModal} />}
+            {showModal && <MemberModal member={member} toggle={toggleModal} show={showModal} />}
         </>
     );
 };
