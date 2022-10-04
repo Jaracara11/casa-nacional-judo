@@ -1,8 +1,9 @@
+import './memberModal.css';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import ListGroup from 'react-bootstrap/ListGroup';
 import { IMember } from '../../interfaces/IMember';
-import { getAgeFromDate } from '../../utils/helper';
+import { formatDate, getAgeFromDate } from '../../utils/helper';
 
 export const MemberModal = (props: any) => {
     const member: IMember = props.member;
@@ -11,7 +12,9 @@ export const MemberModal = (props: any) => {
         <>
             <Modal show={props.show} onHide={props.toggle} centered backdrop='static'>
                 <Modal.Header closeButton>
-                    <Modal.Title>{member.firstName + ' ' + member.lastName}</Modal.Title>
+                    <Modal.Title>
+                        <strong>{member.firstName + ' ' + member.lastName}</strong>
+                    </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <ListGroup className='list-group-flush'>
@@ -29,6 +32,30 @@ export const MemberModal = (props: any) => {
                         </ListGroup.Item>
                         <ListGroup.Item>
                             <strong>Identificación:</strong> {member.identification}
+                        </ListGroup.Item>
+                        <ListGroup.Item>
+                            <strong>Email:</strong> {member.email}
+                        </ListGroup.Item>
+                        <ListGroup.Item>
+                            <strong>Teléfono 1:</strong> {member.phone1}
+                        </ListGroup.Item>
+                        <ListGroup.Item>
+                            <strong>Teléfono 2:</strong> {member.phone2}
+                        </ListGroup.Item>
+                        <ListGroup.Item>
+                            <strong>Anualidad: </strong> {member.anualFee} RD$
+                        </ListGroup.Item>
+                        <ListGroup.Item>
+                            <strong>Mensualidad: </strong> {member.monthlyFee} RD$
+                        </ListGroup.Item>
+                        <ListGroup.Item>
+                            <strong>Total Adeudado: </strong> <u>{member.totalAmountDue} RD$</u>
+                        </ListGroup.Item>
+                        <ListGroup.Item>
+                            <strong>Fecha de inscripción: </strong> {formatDate(member.signUpDate)}
+                        </ListGroup.Item>
+                        <ListGroup.Item>
+                            <strong>Dirección: </strong> {member.address}
                         </ListGroup.Item>
                     </ListGroup>
                 </Modal.Body>
