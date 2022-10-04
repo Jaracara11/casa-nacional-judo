@@ -33,7 +33,7 @@ export const MemberModal = (props: any) => {
                             <strong>Peso:</strong> {member.weight}kg
                         </ListGroup.Item>
                         <ListGroup.Item>
-                            <strong>Edad:</strong> {getAgeFromDate(member.birthDate)}
+                            <strong>Edad:</strong> {getAgeFromDate(member.birthDate)} años
                         </ListGroup.Item>
                         <ListGroup.Item>
                             <strong>Fecha de nacimiento:</strong> {formatDate(member.birthDate)}
