@@ -61,7 +61,6 @@ export const MembersTable = () => {
                                     onClick={() => {
                                         toggleModal();
                                         setMember(member);
-                                        console.log(member);
                                     }}>
                                     Ver más
                                 </Link>
