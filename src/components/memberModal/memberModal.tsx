@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import ListGroup from 'react-bootstrap/ListGroup';
 import { IMember } from '../../interfaces/IMember';
 import { ListGroupItem } from 'react-bootstrap';
-import { getAge } from '../../utils/helper';
+import { getAgeFromDate } from '../../utils/helper';
 
 export const MemberModal = (props: any) => {
     const member: IMember = props.member;
@@ -23,7 +23,7 @@ export const MemberModal = (props: any) => {
                             <strong>Cinturón:</strong> {member.belt}
                         </ListGroup.Item>
                         <ListGroup.Item>
-                            <strong>Edad:</strong> {getAge(member.birthDate)}
+                            <strong>Edad:</strong> {getAgeFromDate(member.birthDate)}
                         </ListGroup.Item>
                     </ListGroup>
                 </Modal.Body>

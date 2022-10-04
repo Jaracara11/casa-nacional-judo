@@ -9,15 +9,9 @@ const formatDate = (date: string) => {
     return new Date(date).toLocaleDateString('es-ES', options);
 };
 
-const getAge = (date: string) => {
-    const today = new Date();
-    const birthDate = new Date(date);
-    const month = today.getMonth() - birthDate.getMonth();
-    let age = today.getFullYear() - birthDate.getFullYear();
-    if (month < 0 || (month === 0 && today.getDate() < birthDate.getDate())) {
-        age--;
-    }
-    return age;
+const getAgeFromDate = (dateString: string) => {
+    const birthday = +new Date(dateString);
+    return ~~((Date.now() - birthday) / 31557600000);
 };
 
 const firstCharToUpper = (str: string) => {
@@ -29,4 +23,4 @@ const firstCharToUpper = (str: string) => {
     return sentence.toString().replaceAll(',', ' ');
 };
 
-export { firstCharToUpper, getCurrentDate, formatDate, getAge };
+export { firstCharToUpper, getCurrentDate, formatDate, getAgeFromDate };
