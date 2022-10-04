@@ -9,10 +9,7 @@ const formatDate = (date: string) => {
     return new Date(date).toLocaleDateString('es-ES', options);
 };
 
-const getAgeFromDate = (dateString: string) => {
-    const birthday = +new Date(dateString);
-    return ~~((Date.now() - birthday) / 31557600000);
-};
+const getAgeFromDate = (dateString: string) => Math.floor((new Date().getTime() - new Date(dateString).getTime()) / 3.15576e10);
 
 const firstCharToUpper = (str: string) => {
     const sentence = str.toLowerCase().split(' ');
