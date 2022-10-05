@@ -2,8 +2,8 @@ import { IMember } from '../interfaces/IMember';
 import { firstCharToUpper } from '../utils/helper';
 
 const parseNewMemberObject = (data: IMember) => {
-    data.documentImage!.length > 0 ? (data.hasDocumentImage = true) : (data.hasDocumentImage = false);
-    delete data.documentImage;
+    data.photo!.length > 0 ? (data.hasPhoto = true) : (data.hasPhoto = false);
+    delete data.photo;
     data.totalAmountDue = data.monthlyFee;
     data.firstName = firstCharToUpper(data.firstName);
     data.lastName = firstCharToUpper(data.lastName);
@@ -12,10 +12,10 @@ const parseNewMemberObject = (data: IMember) => {
     return data;
 };
 
-const parseUpdateMemberObject = (data: IMember, id: string) => {
-    data.documentImage!.length > 0 && (data.hasDocumentImage = true);
-    delete data.documentImage;
-    data.id = id;
+const parseUpdateMemberObject = (data: IMember) => {
+    data.photo!.length > 0 && (data.hasPhoto = true);
+    delete data.photo;
+    delete data.photoURL;
     return data;
 };
 

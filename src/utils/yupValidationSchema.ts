@@ -33,8 +33,7 @@ const memberValidation = Yup.object({
     monthlyFee: Yup.number().positive('Mensualidad debe ser mayor a Cero.').required('Campo requerido.'),
     anualFee: Yup.number().positive('Anualidad debe ser mayor a Cero.').required('Campo requerido.'),
     totalAmountDue: Yup.number(),
-    documentImage: Yup.mixed()
-
+    photo: Yup.mixed()
         .test('fileSize', 'El tamaño de la imagen no debe exceder los 2MB.', (file): any => {
             file.length && file[0].size > 2000000 ? (result = false) : (result = true);
             return result;

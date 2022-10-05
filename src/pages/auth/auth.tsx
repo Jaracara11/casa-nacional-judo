@@ -36,9 +36,10 @@ export const Auth = () => {
                 html: `<strong>${err}</strong>`,
                 icon: 'error',
                 showConfirmButton: false
+            }).finally(() => {
+                setLoadingData(false);
             });
         }
-        setLoadingData(false);
     };
 
     return loadingData ? (

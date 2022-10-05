@@ -1,13 +1,13 @@
 import './upsertmember.css';
 import Swal from 'sweetalert2';
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { BELT_LIST } from '../../utils/constants';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { IMember } from '../../interfaces/IMember';
-import { getMemberById, updateMember, createMember } from '../../repository/members.repository';
-import { getImageURL, uploadImage } from '../../repository/storage.repository';
+import { updateMember, createMember } from '../../repository/members.repository';
+import { uploadImage } from '../../repository/storage.repository';
 import { memberValidation } from '../../utils/yupValidationSchema';
 import { Spinner } from '../../components/spinner/spinner';
 import { ErrorView } from '../../components/errorView/errorView';
@@ -19,12 +19,9 @@ import { parseNewMemberObject, parseUpdateMemberObject } from '../../services/pa
 export const UpsertMember = () => {
     const location = useLocation() as any;
     const navigate = useNavigate();
-    const params = useParams();
 
     const [loadingData, setLoadingData] = useState(true);
     const [member, setMember] = useState({} as IMember);
-    const [documentImage, setDocumentImage] = useState<File>();
-    const [imageURL, setImageURL] = useState<any>('');
 
     const {
         register,
@@ -36,8 +33,8 @@ export const UpsertMember = () => {
     });
 
     useEffect(() => {
-        setMember(location.state.member);
-        reset(location.state.member);
+        location.state && setMember(location.state.member);
+        location.state && reset(location.state.member);
         setLoadingData(false);
     }, []);
 
@@ -51,9 +48,9 @@ export const UpsertMember = () => {
         });
 
         SwalObj.fire({
-            title: `${params.id ? 'Actualizar' : 'Crear'} Miembro`,
-            html: `Esta seguro que desea ${params.id ? 'actualizar este miembro?' : 'agregar este nuevo miembro?'}`,
-            icon: `${params.id ? 'warning' : 'info'}`,
+            title: `${location.state ? 'Actualizar' : 'Crear'} Miembro`,
+            html: `Esta seguro que desea ${location.state ? 'actualizar este miembro?' : 'agregar este nuevo miembro?'}`,
+            icon: `${location.state ? 'warning' : 'info'}`,
             showCancelButton: true,
             confirmButtonText: 'GUARDAR',
             cancelButtonText: 'CANCELAR',
@@ -63,9 +60,9 @@ export const UpsertMember = () => {
             if (result.isConfirmed) {
                 setLoadingData(true);
                 try {
-                    if (params.id) {
-                        documentImage && uploadImage(documentImage, params.id);
-                        updateMember(parseUpdateMemberObject(values, params.id));
+                    if (location.state) {
+                        values.photo.length > 0 && uploadImage(values.photo[0], member.id!);
+                        updateMember(parseUpdateMemberObject(values));
 
                         SwalObj.fire({
                             html: `<strong>Miembro Actualizado!</strong>`,
@@ -75,8 +72,10 @@ export const UpsertMember = () => {
                             navigate('/');
                         });
                     } else {
+                        let photoToUpload: File | null = null;
+                        values.photo.length > 0 && (photoToUpload = values.photo[0]);
                         createMember(parseNewMemberObject(values)).then((response) => {
-                            documentImage && uploadImage(documentImage, response.id);
+                            photoToUpload && uploadImage(photoToUpload, response.id);
                         });
 
                         SwalObj.fire({
@@ -93,9 +92,10 @@ export const UpsertMember = () => {
                         html: `${err.response.data.title}`,
                         icon: 'error',
                         showConfirmButton: false
+                    }).finally(() => {
+                        setLoadingData(false);
                     });
                 }
-                setLoadingData(false);
             }
         });
     };
@@ -105,7 +105,7 @@ export const UpsertMember = () => {
     ) : (
         <div className='upsert-container'>
             <form onSubmit={handleSubmit(submitUserData)}>
-                <h1>{params.id ? 'Editar' : 'Agregar'} Miembro</h1>
+                <h1>{location.state ? 'Editar' : 'Agregar'} Miembro</h1>
                 <div className='form-control'>
                     <div className='row'>
                         <div className='col-sm-6'>
@@ -234,22 +234,22 @@ export const UpsertMember = () => {
 
                     <div className='row'>
                         <div className='col'>
-                            <label className='text-muted' htmlFor='documentImage'>
+                            <label className='text-muted' htmlFor='photo'>
                                 Foto de documento:
                             </label>
                             <input
                                 className='form-control'
                                 type='file'
                                 accept='.jpg, .jpeg, .png'
-                                {...register('documentImage')}
-                                name='documentImage'
+                                {...register('photo')}
+                                name='photo'
                                 onChange={(e: any) => {
-                                    setDocumentImage(e.target.files[0]);
+                                    setMember(() => ({ ...member, photo: e.target.files[0] }));
                                 }}
                             />
-                            <ErrorView error={errors.documentImage} />
-                            {documentImage && <ImagePreview file={documentImage} />}
-                            {member.photoURL && !documentImage && <img className='img-preview' src={member.photoURL} alt='Preview' />}
+                            <ErrorView error={errors.photo} />
+                            {member.photo && <ImagePreview file={member.photo} />}
+                            {member.photoURL && !member.photo && <img className='img-preview' src={member.photoURL} alt='Preview' />}
                         </div>
                     </div>
                 </div>
