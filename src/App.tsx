@@ -11,7 +11,7 @@ export const App = () => {
                 <header>
                     <Navbar />
                 </header>
-                <main>
+                <main className='container-fluid'>
                     <Router />
                 </main>
                 <footer>
