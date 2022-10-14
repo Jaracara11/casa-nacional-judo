@@ -7,6 +7,7 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import { IMember } from '../../interfaces/IMember';
 import { formatDate, getAgeFromDate } from '../../utils/helper';
 import { getImageURL } from '../../repository/storage.repository';
+import { Spinner } from '../spinner/spinner';
 
 export const MemberModal = (props: any) => {
     const [member, setMember] = useState({} as IMember);
@@ -73,11 +74,13 @@ export const MemberModal = (props: any) => {
                         <ListGroup.Item>
                             <strong>Dirección: </strong> {member.address}
                         </ListGroup.Item>
-                        {member.photoURL && (
+                        {member.photoURL ? (
                             <ListGroup.Item>
                                 <strong>Imagen de documento:</strong>
                                 <img className='img-preview' src={member.photoURL} alt='Preview' />
                             </ListGroup.Item>
+                        ) : (
+                            <Spinner />
                         )}
                     </ListGroup>
                 </Modal.Body>
