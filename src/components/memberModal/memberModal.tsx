@@ -74,13 +74,12 @@ export const MemberModal = (props: any) => {
                         <ListGroup.Item>
                             <strong>Dirección: </strong> {member.address}
                         </ListGroup.Item>
-                        {member.photoURL ? (
+
+                        {member.photoURL && (
                             <ListGroup.Item>
                                 <strong>Imagen de documento:</strong>
                                 <img className='img-preview' src={member.photoURL} alt='Preview' />
                             </ListGroup.Item>
-                        ) : (
-                            <Spinner />
                         )}
                     </ListGroup>
                 </Modal.Body>
