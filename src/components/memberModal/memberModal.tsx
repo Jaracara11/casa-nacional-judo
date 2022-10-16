@@ -7,7 +7,6 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import { IMember } from '../../interfaces/IMember';
 import { formatDate, getAgeFromDate } from '../../utils/helper';
 import { getImageURL } from '../../repository/storage.repository';
-import { Spinner } from '../spinner/spinner';
 
 export const MemberModal = (props: any) => {
     const [member, setMember] = useState({} as IMember);
