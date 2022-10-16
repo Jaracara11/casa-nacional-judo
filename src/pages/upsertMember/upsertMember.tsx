@@ -2,7 +2,7 @@ import './upsertmember.css';
 import Swal from 'sweetalert2';
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { BELT_LIST } from '../../utils/constants';
+import { BELT_LIST, BLOOD_TYPES } from '../../utils/constants';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { IMember } from '../../interfaces/IMember';
@@ -109,14 +109,14 @@ export const UpsertMember = () => {
                 <div className='form-control'>
                     <div className='row'>
                         <div className='col-sm-6'>
-                            <label className='text-muted' htmlFor='firstName'>
+                            <label className='text-muted required' htmlFor='firstName'>
                                 Nombres:
                             </label>
                             <input className='form-control' {...register('firstName')} type='text' name='firstName' minLength={3} maxLength={20} />
                             <ErrorView error={errors.firstName} />
                         </div>
                         <div className='col-sm-6'>
-                            <label className='text-muted' htmlFor='lastName'>
+                            <label className='text-muted required' htmlFor='lastName'>
                                 Apellidos:
                             </label>
                             <input className='form-control' {...register('lastName')} type='text' name='lastName' minLength={3} maxLength={25} />
@@ -143,7 +143,7 @@ export const UpsertMember = () => {
 
                     <div className='row'>
                         <div className='col-sm-6'>
-                            <label className='text-muted' htmlFor='phone1'>
+                            <label className='text-muted required' htmlFor='phone1'>
                                 Teléfono 1:
                             </label>
                             <input className='form-control' {...register('phone1')} type='text' name='phone1' minLength={10} maxLength={10} />
@@ -172,31 +172,37 @@ export const UpsertMember = () => {
                             </select>
                         </div>
                         <div className='col-sm-4'>
-                            <label className='text-muted' htmlFor='weight'>
+                            <label className='text-muted' htmlFor='bloodType'>
+                                Tipo de sangre:
+                            </label>
+                            <select className='form-select' {...register('bloodType')}>
+                                {BLOOD_TYPES.map((bloodType) => (
+                                    <option key={bloodType} value={bloodType}>
+                                        {bloodType}
+                                    </option>
+                                ))}
+                            </select>
+                            <ErrorView error={errors.bloodType} />
+                        </div>
+                        <div className='col-sm-4'>
+                            <label className='text-muted required' htmlFor='weight'>
                                 Peso (kg):
                             </label>
                             <input className='form-control' {...register('weight')} type='number' name='weight' defaultValue={0} />
                             <ErrorView error={errors.weight} />
                         </div>
-                        <div className='col-sm-4'>
-                            <label className='text-muted' htmlFor='bloodType'>
-                                Tipo de sangre:
-                            </label>
-                            <input className='form-control' {...register('bloodType')} type='text' name='bloodType' maxLength={2} />
-                            <ErrorView error={errors.bloodType} />
-                        </div>
                     </div>
 
                     <div className='row'>
                         <div className='col'>
-                            <label className='text-muted' htmlFor='birthDate'>
+                            <label className='text-muted required' htmlFor='birthDate'>
                                 Fecha de nacimiento:
                             </label>
                             <input className='form-control' {...register('birthDate')} type='date' name='birthDate' />
                             <ErrorView error={errors.birthDate} />
                         </div>
                         <div className='col'>
-                            <label className='text-muted' htmlFor='birthDate'>
+                            <label className='text-muted required' htmlFor='birthDate'>
                                 Fecha de inscripción:
                             </label>
                             <input className='form-control' {...register('signUpDate')} type='date' name='signUpDate' />
@@ -211,14 +217,14 @@ export const UpsertMember = () => {
 
                     <div className='row'>
                         <div className='col'>
-                            <label className='text-muted' htmlFor='monthlyFee'>
+                            <label className='text-muted required' htmlFor='monthlyFee'>
                                 Mensualidad:
                             </label>
                             <input className='form-control' {...register('monthlyFee')} type='number' name='monthlyFee' defaultValue={0} />
                             <ErrorView error={errors.monthlyFee} />
                         </div>
                         <div className='col'>
-                            <label className='text-muted' htmlFor='anualFee'>
+                            <label className='text-muted required' htmlFor='anualFee'>
                                 Anualidad:
                             </label>
                             <input className='form-control' {...register('anualFee')} type='number' name='anualFee' defaultValue={0} />
@@ -226,7 +232,7 @@ export const UpsertMember = () => {
                         </div>
                     </div>
 
-                    <label className='text-muted' htmlFor='address'>
+                    <label className='text-muted required' htmlFor='address'>
                         Dirección:
                     </label>
                     <textarea className='form-control' {...register('address')} name='address' maxLength={80} />

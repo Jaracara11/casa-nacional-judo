@@ -7,7 +7,6 @@ const parseNewMemberObject = (data: IMember) => {
     data.totalAmountDue = data.monthlyFee;
     data.firstName = firstCharToUpper(data.firstName);
     data.lastName = firstCharToUpper(data.lastName);
-    data.bloodType && (data.bloodType = firstCharToUpper(data.bloodType));
     data.address = firstCharToUpper(data.address);
     return data;
 };

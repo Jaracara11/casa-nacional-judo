@@ -16,4 +16,6 @@ const BELT_LIST: IGenericObject[] = [
     { key: 'Black', value: 'Negro' }
 ];
 
-export { SUPPORTED_IMAGE_FORMATS, BELT_LIST, MEMBERS_COLLECTION, MEMBER_PHOTOS_FOLDER };
+const BLOOD_TYPES: string[] = ['', 'A+', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-'];
+
+export { SUPPORTED_IMAGE_FORMATS, BELT_LIST, BLOOD_TYPES, MEMBERS_COLLECTION, MEMBER_PHOTOS_FOLDER };

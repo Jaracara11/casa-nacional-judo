@@ -37,3 +37,8 @@
         width: 150px;
     }
 }
+
+.required:after {
+    color: red;
+    content: ' *';
+}
