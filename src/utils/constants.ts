@@ -1,4 +1,4 @@
-import { IGenericObject } from '../interfaces/GenericObject';
+import { GenericObject } from '../interfaces/GenericObject';
 
 const MEMBERS_COLLECTION = 'members';
 
@@ -6,7 +6,7 @@ const MEMBER_PHOTOS_FOLDER = 'member-photos/';
 
 const SUPPORTED_IMAGE_FORMATS: string[] = ['image/jpeg', 'image/jpg', 'image/png'];
 
-const BELT_LIST: IGenericObject[] = [
+const BELT_LIST: GenericObject[] = [
     { key: 'White', value: 'Blanco' },
     { key: 'Yellow', value: 'Amarillo' },
     { key: 'Orange', value: 'Naranja' },
