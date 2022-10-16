@@ -5,7 +5,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { BELT_LIST, BLOOD_TYPES } from '../../utils/constants';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { IMember } from '../../interfaces/Member';
+import { Member } from '../../interfaces/Member';
 import { updateMember, createMember } from '../../repository/members.repository';
 import { uploadImage } from '../../repository/storage.repository';
 import { memberValidation } from '../../utils/yupValidationSchema';
@@ -21,7 +21,7 @@ export const UpsertMember = () => {
     const navigate = useNavigate();
 
     const [loadingData, setLoadingData] = useState(true);
-    const [member, setMember] = useState({} as IMember);
+    const [member, setMember] = useState({} as Member);
 
     const {
         register,
@@ -38,7 +38,7 @@ export const UpsertMember = () => {
         setLoadingData(false);
     }, []);
 
-    const submitUserData: any = (values: IMember) => {
+    const submitUserData: any = (values: Member) => {
         const SwalObj = Swal.mixin({
             customClass: {
                 confirmButton: 'btn btn-outline-info m-3',

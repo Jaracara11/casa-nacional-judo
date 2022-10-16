@@ -3,15 +3,15 @@ import Table from 'react-bootstrap/esm/Table';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { getAllMembers } from '../../repository/members.repository';
-import { IMember } from '../../interfaces/Member';
+import { Member } from '../../interfaces/Member';
 import { Spinner } from '../spinner/spinner';
 import { formatDate } from '../../utils/helper';
 import { MemberModal } from '../memberModal/memberModal';
 
 export const MembersTable = () => {
     const [loadingData, setLoadingData] = useState(true);
-    const [members, setMembers] = useState<IMember[]>([]);
-    const [member, setMember] = useState({} as IMember);
+    const [members, setMembers] = useState<Member[]>([]);
+    const [member, setMember] = useState({} as Member);
     const [showModal, setShowModal] = useState<boolean>(false);
 
     const toggleModal = () => setShowModal((prev) => !prev);
@@ -46,7 +46,7 @@ export const MembersTable = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {members.map((member: IMember) => (
+                    {members.map((member: Member) => (
                         <tr key={member.id}>
                             <td>{`${member.firstName} ${member.lastName}`}</td>
                             <td>{member.weight}kg</td>

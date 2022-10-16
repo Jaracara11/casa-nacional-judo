@@ -5,7 +5,7 @@ import { UserAuth } from '../../context/userContext';
 import { signInValidation } from '../../utils/yupValidationSchema';
 import { Spinner } from '../../components/spinner/spinner';
 import { ErrorView } from '../../components/errorView/errorView';
-import { IAuthUser } from '../../interfaces/AuthUser';
+import { AuthUser } from '../../interfaces/AuthUser';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Swal from 'sweetalert2';
@@ -25,7 +25,7 @@ export const Auth = () => {
         resolver: yupResolver(signInValidation)
     });
 
-    const submitAuth: any = async (userData: IAuthUser) => {
+    const submitAuth: any = async (userData: AuthUser) => {
         setLoadingData(true);
         try {
             await signIn(userData.email, userData.password);

@@ -1,5 +1,5 @@
 import { collection, getDocs, getDoc, addDoc, updateDoc, deleteDoc, doc, query, orderBy } from 'firebase/firestore/lite';
-import { IMember } from '../interfaces/Member';
+import { Member } from '../interfaces/Member';
 import { db } from '../utils/firebase';
 import { MEMBERS_COLLECTION } from '../utils/constants';
 
@@ -19,15 +19,15 @@ const getAllMembers = async () => {
 
 const getMemberById = async (id: string) => {
     const docSnap = await getDoc(docRef(id));
-    return docSnap.data() as IMember;
+    return docSnap.data() as Member;
 };
 
-const createMember = async (data: IMember) => {
+const createMember = async (data: Member) => {
     const newMember = await addDoc(collectionRef(), data);
     return newMember;
 };
 
-const updateMember = async (data: IMember | any) => {
+const updateMember = async (data: Member | any) => {
     await updateDoc(docRef(data.id!), data);
 };
 
