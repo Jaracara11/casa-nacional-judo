@@ -1,4 +1,4 @@
-export interface IGenericObject {
+export interface GenericObject {
     key: string;
     value: string;
 }

@@ -5,7 +5,7 @@ import { UserAuth } from '../../context/userContext';
 import { signInValidation } from '../../utils/yupValidationSchema';
 import { Spinner } from '../../components/spinner/spinner';
 import { ErrorView } from '../../components/errorView/errorView';
-import { IAuthUser } from '../../interfaces/IAuthUser';
+import { IAuthUser } from '../../interfaces/AuthUser';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Swal from 'sweetalert2';

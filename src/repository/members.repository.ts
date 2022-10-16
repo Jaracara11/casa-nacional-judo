@@ -1,5 +1,5 @@
 import { collection, getDocs, getDoc, addDoc, updateDoc, deleteDoc, doc, query, orderBy } from 'firebase/firestore/lite';
-import { IMember } from '../interfaces/IMember';
+import { IMember } from '../interfaces/Member';
 import { db } from '../utils/firebase';
 import { MEMBERS_COLLECTION } from '../utils/constants';
 

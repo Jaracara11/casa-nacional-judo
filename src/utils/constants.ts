@@ -1,4 +1,4 @@
-import { IGenericObject } from '../interfaces/IGenericObject';
+import { IGenericObject } from '../interfaces/GenericObject';
 
 const MEMBERS_COLLECTION = 'members';
 

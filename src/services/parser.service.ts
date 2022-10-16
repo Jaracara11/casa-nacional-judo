@@ -1,4 +1,4 @@
-import { IMember } from '../interfaces/IMember';
+import { IMember } from '../interfaces/Member';
 import { firstCharToUpper } from '../utils/helper';
 
 const parseNewMemberObject = (data: IMember) => {

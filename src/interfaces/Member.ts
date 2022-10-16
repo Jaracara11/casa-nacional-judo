@@ -1,4 +1,4 @@
-export interface IMember {
+export interface Member {
     id?: string;
     firstName: string;
     lastName: string;

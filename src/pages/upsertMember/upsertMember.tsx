@@ -5,7 +5,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { BELT_LIST, BLOOD_TYPES } from '../../utils/constants';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { IMember } from '../../interfaces/IMember';
+import { IMember } from '../../interfaces/Member';
 import { updateMember, createMember } from '../../repository/members.repository';
 import { uploadImage } from '../../repository/storage.repository';
 import { memberValidation } from '../../utils/yupValidationSchema';

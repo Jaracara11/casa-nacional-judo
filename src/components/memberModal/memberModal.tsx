@@ -4,12 +4,12 @@ import { useState, useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import ListGroup from 'react-bootstrap/ListGroup';
-import { IMember } from '../../interfaces/IMember';
+import { Member } from '../../interfaces/Member';
 import { formatDate, getAgeFromDate } from '../../utils/helper';
 import { getImageURL } from '../../repository/storage.repository';
 
 export const MemberModal = (props: any) => {
-    const [member, setMember] = useState({} as IMember);
+    const [member, setMember] = useState({} as Member);
 
     useEffect(() => {
         if (props.member.hasPhoto) {
